@@ -2,6 +2,7 @@
 
 ## Members ##
 - Kai Jurgeit @Agent49
+- Tobias Krueger @fre2dyy
 
 
 ## 1. Warum Git? ##
