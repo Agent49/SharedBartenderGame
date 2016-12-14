@@ -3,6 +3,7 @@
 ## Members ##
 - Kai Jurgeit @Agent49
 - Tobias Krueger @fre2dyy
+- Martin Heise @Khamu
 
 
 ## 1. Warum Git? ##
