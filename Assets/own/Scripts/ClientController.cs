@@ -16,11 +16,6 @@ public class ClientController : MonoBehaviour {
 		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
 		Invoke ("GenerateRequest", 1);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 		
 	void GetDrink(Transform Drink) {
 		bool isEquipment = Drink.IsChildOf (GameObject.Find ("Equipment").transform);

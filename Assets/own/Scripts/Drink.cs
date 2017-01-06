@@ -37,26 +37,23 @@ public class Drink : MonoBehaviour {
 		this.SetDrink ();
 	}
 
+	// TODO: Read everything from xml... better data structure
 	private void SetDrink() {
+		this.Ingredients = drinkList [this.Name];
 		switch(this.Name) {
 		case "Beer":
-			this.Ingredients = drinkList ["Beer"];
 			this.Price = 3;
 			break;
 		case "Cola":
-			this.Ingredients = drinkList ["Cola"];
 			this.Price = 2;
 			break;
 		case "Diesel":
-			this.Ingredients = drinkList ["Diesel"];
 			this.Price = 2.5m;
 			break;
 		case "Cuba Libre":
-			this.Ingredients = drinkList ["Cuba Libre"];
 			this.Price = 6;
 			break;
 		case "Sex on the Beach":
-			this.Ingredients = drinkList ["Sex on the Beach"];
 			this.Price = 6.5m;
 			break;
 		}

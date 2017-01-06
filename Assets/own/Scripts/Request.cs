@@ -11,4 +11,9 @@ public class Request : MonoBehaviour {
 		this.StartTime = Time.time;
 		Debug.Log (this.StartTime);
 	}
+
+	private void chooseDrink() {
+		// TODO: Perfomance Issue!
+		string[] drinkList = Drink.GetDrinkList ();
+	}
 }
