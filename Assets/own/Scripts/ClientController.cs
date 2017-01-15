@@ -7,9 +7,9 @@ public class ClientController : MonoBehaviour {
 	private string Name;
 	public Character Character;
 	public int Drunkenness;
-	public string Request;
+	public Request Request;
+	public string tmp;
 	public string Message;
-	public bool RequestMatch;
 	public UiController Ui;
 
 	void Start () {
@@ -17,6 +17,17 @@ public class ClientController : MonoBehaviour {
 		this.Character = new Character (this.Name);
 		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
 		Invoke ("GenerateRequest", 1);
+	}
+
+	/*
+	 * GenerateRequest(): Determines what the client wants to drink
+	 */
+	void GenerateRequest() {
+		this.Request = new Request ();
+		// 1.) Get a drinklist
+		string[] drinkList = Drink.GetDrinkList ();
+		// 2.) Choose one drink randomly
+		Ui.ReceiveChat (this.Name + ": I would like to have a " + this.Request.Drink.Name + "\n");
 	}
 		
 	/* 
@@ -42,11 +53,10 @@ public class ClientController : MonoBehaviour {
 	 * @return bool: RequestMatch
 	 */
 	bool TakeDrink(Dictionary<string, decimal> Mix) {
-		this.RequestMatch = false;
+		int rate = this.Request.RateMix(Mix);
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
-		int rate = this.rateMix(Mix);
-		Debug.Log ("Drink Rating: " + rate);
-		if (this.RequestMatch) {
+		if (this.Request.Match) {
+			int tip = this.Request.CalculateTip ();
 			Ui.ReceiveMoney (10);
 			Ui.ReceiveChat(this.Name + ": Thank you, sir! :)\n");
 			GenerateRequest ();
@@ -57,58 +67,12 @@ public class ClientController : MonoBehaviour {
 		}
 	}
 
-	/*
-	 * GenerateRequest(): Determines what the client wants to drink
-	 */
-	void GenerateRequest() {
-		// 1.) Get a drinklist
-		string[] drinkList = Drink.GetDrinkList ();
-		// 2.) Choose one drink randomly
-		this.Request =  drinkList[Random.Range(0, drinkList.Length)];
-		Ui.ReceiveChat (this.Name + ": I would like to have a " + this.Request + "\n");
-	}
 
-	/*
-	 * Rate Mix: Check ingredients and amount
-	 * 
-	 * Maximum amount of stars also depends also on complexity of drink (number of total ingredients)
-	 * Basic ingredients (Cola, Beer...) never can be exact in amount. In this way thay can't contribute
-	 * to the rating. Either they are or they aren't in the drink.
-	 * 
-	 * @return rate: 0 to 5
-	 */ 
-	private int rateMix(Dictionary<string, decimal> Mix) {
-		int rate = 0;
-		// Generate ingredient list from request by Drink()
-		Drink targetDrink = new Drink(this.Request);
-
-		// If list of ingredients missmatches
-		if (Mix.Count != targetDrink.Ingredients.Count) {
-			this.RequestMatch = false;
-			return 0;
-		}
-		
-		// Iterate over targetDrink
-		foreach(var item in targetDrink.Ingredients) {
-			decimal amount;
-
-			// If ingredient is in Shaker
-			if (Mix.TryGetValue (item.Key, out amount)) {
-				this.RequestMatch = true;
-				// Rate up if amount is exact
-				if (amount == item.Value)
-					rate++;
-			} else {
-				this.RequestMatch = false;
-				break;
-			}
-		}
-		return rate;
-	}
 
 	void AssessSatisfaction() {
 		
 	}
+
 
 	void SmallTalk() {
 		Debug.Log ("Do you want something from me?");

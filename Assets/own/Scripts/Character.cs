@@ -6,9 +6,10 @@ public class Character : MonoBehaviour {
 
 	public string Name;
 	public float Durability;			// Factor to apply on promille level
+	public float[] Generousness;		// Factor to apply on tip
 	public string[] FavoriteDrinks;		// Only these kind of Drinks the client always orders
 	public string[] DrinkSelection;		// Just specify if there are limitations like non-alcoholics
-	public Dictionary<int, string[]> Talk;
+	public Dictionary<string, string[]> Talk;
 
 	private static Dictionary<string, Dictionary<string, string[]>> TalkList = new Dictionary<string, Dictionary<string, string[]>>() {
 		// Straight edge
@@ -26,7 +27,7 @@ public class Character : MonoBehaviour {
 				{"complaint", new string[] {"Hast"}},
 				{"sober", new string[] {"Was für'n beschissener Tag!"}},
 				{"tipsy", new string[] {"Jetzt geht's mir schon viel besser."}},
-				{"drunken", new string[] {"Hey Mann, du bist mein bester Freund. Ich liebe dich Alter."}}
+				{"drunken", new string[] {"Hey Mann, du bist mein bester Freund. Ich liebe dich!"}}
 			}
 		}
 	};
@@ -44,11 +45,16 @@ public class Character : MonoBehaviour {
 		switch(this.Name) {
 		// Does not drink alcohol at all, is a bit Hipster
 		case "Bastian":
-			this.FavoriteDrinks = new string[] {"Cola"};
-//			this.Talk = new Dictionary<int, string[]> {}
+			this.Durability = 1.0f;
+			this.Generousness = new float[] { 0.0f, 0.1f, 0.2f };
+			this.FavoriteDrinks = new string[] { "Cola" };
+			this.Talk = TalkList [this.Name];
 			break;
 		case "Klaus":
-			this.FavoriteDrinks = new string[] {"Beer"};
+			this.Durability = 3.5f;
+			this.Generousness = new float[] { 0.2f, 0.4f, 0.9f };
+			this.FavoriteDrinks = new string[] { "Beer" };
+			this.Talk = TalkList [this.Name];
 			break;
 		}
 	}
