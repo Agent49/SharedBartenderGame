@@ -29,8 +29,8 @@ public class Drink : MonoBehaviour {
 	};
 
 	// How much % alcohol does an ingredient contain?
-	private static Dictionary<string, int> Ingeredient = new Dictionary<string, int> {
-		{"Cola", 0}, {"Orange", 0}, {"Pineapple", 0}, {"Beer", 5}, 
+	private static Dictionary<string, int> Ingredient = new Dictionary<string, int> {
+		{"Cola", 0}, {"Orange", 0}, {"Pineapple", 0}, {"Grenadine", 0}, {"Beer", 5}, {"Lemon", 0}, {"Schnapps", 40}
 	};
 
 	public Drink(string name) {
