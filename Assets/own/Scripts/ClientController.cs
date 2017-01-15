@@ -3,20 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ClientController : MonoBehaviour {
-
-	public string Message;
+	
+	private string Name;
+	public Character Character;
+	public int Drunkenness;
 	public string Request;
-	private string name;
+	public string Message;
 	public bool RequestMatch;
 	public UiController Ui;
 
-	// Use this for initialization
 	void Start () {
-		this.name = this.gameObject.name;
+		this.Name = this.gameObject.name;
+		this.Character = new Character (this.Name);
 		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
 		Invoke ("GenerateRequest", 1);
 	}
 		
+	/* 
+	 * GetDrink: Will be called when Person gives client a drink
+	 */
 	void GetDrink(Transform Drink) {
 		bool isEquipment = Drink.IsChildOf (GameObject.Find ("Equipment").transform);
 		if(isEquipment) {
@@ -41,23 +46,26 @@ public class ClientController : MonoBehaviour {
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
 		int rate = this.rateMix(Mix);
 		Debug.Log ("Drink Rating: " + rate);
-
 		if (this.RequestMatch) {
 			Ui.ReceiveMoney (10);
-			Ui.ReceiveChat(this.name + ": Thank you, sir! :)\n");
+			Ui.ReceiveChat(this.Name + ": Thank you, sir! :)\n");
 			GenerateRequest ();
 			return true;
 		} else {
-			Ui.ReceiveChat(this.name + ": That was not what I've ordered! :(\n");
+			Ui.ReceiveChat(this.Name + ": That was not what I've ordered! :(\n");
 			return false;
 		}
 	}
 
+	/*
+	 * GenerateRequest(): Determines what the client wants to drink
+	 */
 	void GenerateRequest() {
-		// TODO: Perfomance Issue!
+		// 1.) Get a drinklist
 		string[] drinkList = Drink.GetDrinkList ();
+		// 2.) Choose one drink randomly
 		this.Request =  drinkList[Random.Range(0, drinkList.Length)];
-		Ui.ReceiveChat (this.name + ": I would like to have a " + this.Request + "\n");
+		Ui.ReceiveChat (this.Name + ": I would like to have a " + this.Request + "\n");
 	}
 
 	/*

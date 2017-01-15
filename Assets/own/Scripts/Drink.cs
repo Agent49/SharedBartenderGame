@@ -28,13 +28,18 @@ public class Drink : MonoBehaviour {
 		{"Sex on the Beach", new Dictionary<string, decimal> { {"Schnapps", 40.0m}, {"Orange", 40.0m}, {"Pineapple", 20.0m}, {"Grenadine", 10.0m}}}
 	};
 
-	public static string[] GetDrinkList() {
-		return drinkList.Keys.ToArray ();
-	}
+	// How much % alcohol does an ingredient contain?
+	private static Dictionary<string, int> Ingeredient = new Dictionary<string, int> {
+		{"Cola", 0}, {"Orange", 0}, {"Pineapple", 0}, {"Beer", 5}, 
+	};
 
 	public Drink(string name) {
 		this.Name = name;
 		this.SetDrink ();
+	}
+
+	public static string[] GetDrinkList() {
+		return drinkList.Keys.ToArray ();
 	}
 
 	// TODO: Read everything from xml... better data structure
