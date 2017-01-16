@@ -16,6 +16,7 @@ public class ClientController : MonoBehaviour {
 		this.Name = this.gameObject.name;
 		this.Character = new Character (this.Name);
 		this.Drunkenness = 0;
+		Debug.Log (this.Character.Talk["hello"][0]);
 		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
 		Invoke ("GenerateRequest", 1);
 	}
@@ -65,7 +66,8 @@ public class ClientController : MonoBehaviour {
 
 	void GiveMoney() {
 		this.Request.CalculateTip (this.Character.Generousness[this.Drunkenness]);
-		Ui.ReceiveMoney (10 + this.Request.Tip);
+		int money = (int)Mathf.Round ((float)this.Request.Drink.Price + this.Request.Tip);
+		Ui.ReceiveMoney (money);
 		Ui.ReceiveChat(this.Name + ": Thank you, sir! :)\n");		
 	}
 
