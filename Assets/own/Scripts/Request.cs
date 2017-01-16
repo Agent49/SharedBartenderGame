@@ -7,7 +7,7 @@ public class Request : MonoBehaviour {
 	public Drink Drink;
 	public bool Match;
 	public int Rate;
-	public float Duration;
+	public float InitialTime;
 	public int Tip;
 
 	public static float K;
@@ -17,6 +17,8 @@ public class Request : MonoBehaviour {
 		string[] drinkList = Drink.GetDrinkList ();
 		// 2.) Choose one drink randomly
 		this.Drink = new Drink(drinkList[Random.Range(0, drinkList.Length)]);
+		// 3.) Time to evaluate duration
+		InitialTime = Time.time;
 	}
 
 	/*
@@ -54,12 +56,27 @@ public class Request : MonoBehaviour {
 		return this.Rate;
 	}
 
-	public int CalculateTip() {
+	/*
+	 * CalculateTip: The tip depends on
+	 * Character (generousness), Random, Duration, 
+	 * complexity of Drink, Price of Drink, Drink Quality
+	 * 
+	 * Know your Clients! Know how to mix good and fast!
+	 */
+	public int CalculateTip(float generousness) {
 		this.Tip = 0;
-//				Debug.Log ("Generousness: " + this.Character.Generousness [0]);
-//				Debug.Log ("Price: " + this.TargetDrink.Price);
-//				Debug.Log ("Rate: " + this.Rate);
-//				Debug.Log ("Duration: " + this.Rate);
+		int complexity = Drink.Ingredients.Count;
+		// Is the Client willing to give a tip?
+		float kRandom = Random.Range (0.0f, 1.0f) * generousness;
+		// How much time has passed?
+		float duration = Time.time - InitialTime;
+		// Maximum time allowed depends on number of ingredients
+		float maxTime = 10f + Mathf.Pow ((float)complexity, 2.0f);
+
+		if (true || (kRandom > 0.5f) && (duration < maxTime)) {
+			this.Tip = (int)Mathf.Round ((float)Drink.Price * Rate * 0.3f);
+		}
+
 		return this.Tip;
 	}
 }

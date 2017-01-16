@@ -52,7 +52,7 @@ public class Character : MonoBehaviour {
 			break;
 		case "Klaus":
 			this.Durability = 3.5f;
-			this.Generousness = new float[] { 0.2f, 0.4f, 0.9f };
+			this.Generousness = new float[] { 0.8f, 0.85f, 1.0f };
 			this.FavoriteDrinks = new string[] { "Beer" };
 			this.Talk = TalkList [this.Name];
 			break;

@@ -15,6 +15,7 @@ public class ClientController : MonoBehaviour {
 	void Start () {
 		this.Name = this.gameObject.name;
 		this.Character = new Character (this.Name);
+		this.Drunkenness = 0;
 		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
 		Invoke ("GenerateRequest", 1);
 	}
@@ -24,9 +25,6 @@ public class ClientController : MonoBehaviour {
 	 */
 	void GenerateRequest() {
 		this.Request = new Request ();
-		// 1.) Get a drinklist
-		string[] drinkList = Drink.GetDrinkList ();
-		// 2.) Choose one drink randomly
 		Ui.ReceiveChat (this.Name + ": I would like to have a " + this.Request.Drink.Name + "\n");
 	}
 		
@@ -48,7 +46,7 @@ public class ClientController : MonoBehaviour {
 	}
 
 	/*
-	 * Will be called when Barkeeper gives a Drink to the client
+	 * TakeDrink: If Drinkk matches process action
 	 * 
 	 * @return bool: RequestMatch
 	 */
@@ -56,10 +54,8 @@ public class ClientController : MonoBehaviour {
 		int rate = this.Request.RateMix(Mix);
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
 		if (this.Request.Match) {
-			int tip = this.Request.CalculateTip ();
-			Ui.ReceiveMoney (10);
-			Ui.ReceiveChat(this.Name + ": Thank you, sir! :)\n");
-			GenerateRequest ();
+			this.GiveMoney ();
+			this.GenerateRequest ();
 			return true;
 		} else {
 			Ui.ReceiveChat(this.Name + ": That was not what I've ordered! :(\n");
@@ -67,7 +63,11 @@ public class ClientController : MonoBehaviour {
 		}
 	}
 
-
+	void GiveMoney() {
+		this.Request.CalculateTip (this.Character.Generousness[this.Drunkenness]);
+		Ui.ReceiveMoney (10 + this.Request.Tip);
+		Ui.ReceiveChat(this.Name + ": Thank you, sir! :)\n");		
+	}
 
 	void AssessSatisfaction() {
 		
