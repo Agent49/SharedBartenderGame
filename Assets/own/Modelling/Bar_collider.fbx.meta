@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: 6313fc4a43ff7b14da001b910ef81423
+timeCreated: 1484648577
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Camera
+    100004: Deckenregal
+    100006: Eiswuefelbox
+    100008: Fridge
+    100010: Fridge2
+    100012: FridgeGriff
+    100014: FridgeGriff2
+    100016: FridgeH1
+    100018: FridgeH2
+    100020: HahnL
+    100022: HahnM
+    100024: HahnR
+    100026: Holzgriffe
+    100028: Lamp
+    100030: Pool
+    100032: Staender
+    100034: Tresen
+    100036: Tresen_simple
+    100038: Weinhalter1
+    100040: Weinhalter2
+    100042: Weinhalter3
+    100044: "W\xE4nde"
+    400000: //RootNode
+    400002: Camera
+    400004: Deckenregal
+    400006: Eiswuefelbox
+    400008: Fridge
+    400010: Fridge2
+    400012: FridgeGriff
+    400014: FridgeGriff2
+    400016: FridgeH1
+    400018: FridgeH2
+    400020: HahnL
+    400022: HahnM
+    400024: HahnR
+    400026: Holzgriffe
+    400028: Lamp
+    400030: Pool
+    400032: Staender
+    400034: Tresen
+    400036: Tresen_simple
+    400038: Weinhalter1
+    400040: Weinhalter2
+    400042: Weinhalter3
+    400044: "W\xE4nde"
+    2300000: Deckenregal
+    2300002: Eiswuefelbox
+    2300004: Fridge
+    2300006: Fridge2
+    2300008: FridgeGriff
+    2300010: FridgeGriff2
+    2300012: FridgeH1
+    2300014: FridgeH2
+    2300016: HahnL
+    2300018: HahnM
+    2300020: HahnR
+    2300022: Holzgriffe
+    2300024: Pool
+    2300026: Staender
+    2300028: Tresen
+    2300030: Tresen_simple
+    2300032: Weinhalter1
+    2300034: Weinhalter2
+    2300036: Weinhalter3
+    2300038: "W\xE4nde"
+    3300000: Deckenregal
+    3300002: Eiswuefelbox
+    3300004: Fridge
+    3300006: Fridge2
+    3300008: FridgeGriff
+    3300010: FridgeGriff2
+    3300012: FridgeH1
+    3300014: FridgeH2
+    3300016: HahnL
+    3300018: HahnM
+    3300020: HahnR
+    3300022: Holzgriffe
+    3300024: Pool
+    3300026: Staender
+    3300028: Tresen
+    3300030: Tresen_simple
+    3300032: Weinhalter1
+    3300034: Weinhalter2
+    3300036: Weinhalter3
+    3300038: "W\xE4nde"
+    4300000: Tresen_simple
+    4300002: "W\xE4nde"
+    4300004: FridgeGriff2
+    4300006: Eiswuefelbox
+    4300008: Fridge2
+    4300010: Holzgriffe
+    4300012: FridgeGriff
+    4300014: Weinhalter3
+    4300016: Weinhalter2
+    4300018: Weinhalter1
+    4300020: Deckenregal
+    4300022: FridgeH2
+    4300024: FridgeH1
+    4300026: Fridge
+    4300028: Tresen
+    4300030: HahnL
+    4300032: HahnM
+    4300034: HahnR
+    4300036: Staender
+    4300038: Pool
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
