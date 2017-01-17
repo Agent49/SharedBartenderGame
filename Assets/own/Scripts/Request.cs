@@ -77,6 +77,7 @@ public class Request : MonoBehaviour {
 			this.Tip = (int)Mathf.Round ((float)Drink.Price * Rate * 0.3f);
 		}
 
+		Debug.Log ("Tip: " + this.Tip);
 		return this.Tip;
 	}
 }
