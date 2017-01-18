@@ -16,7 +16,7 @@ public class ClientController : MonoBehaviour {
 		this.Name = this.gameObject.name;
 		this.Character = new Character (this.Name);
 		this.Drunkenness = 0;
-		Debug.Log (this.Character.Talk["hello"][0]);
+		// Debug.Log (this.Character.Talk["hello"][0]);
 		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
 		Invoke ("GenerateRequest", 1);
 	}
