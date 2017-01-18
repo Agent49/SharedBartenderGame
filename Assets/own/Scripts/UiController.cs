@@ -7,7 +7,7 @@ public class UiController : MonoBehaviour {
 	GameObject CrosshairActive;
 	GameObject CrosshairInactive;
 	Text Money;
-	TextMesh MoneyKasse;
+	TextMesh MoneyTill;
 	Text Talk;
 	Text Inventory;
 
@@ -22,7 +22,7 @@ public class UiController : MonoBehaviour {
 		CrosshairActive = GameObject.Find ("Crosshair active");
 		CrosshairInactive = GameObject.Find ("Crosshair inactive");
 		Money = GameObject.Find ("Money Text").GetComponent<Text>();
-		MoneyKasse = GameObject.Find ("Money Text Kasse").GetComponent<TextMesh>();
+		MoneyTill = GameObject.Find ("Money Text Kasse").GetComponent<TextMesh>();
 		Talk = GameObject.Find ("Talk Text").GetComponent<Text>();
 		Inventory = GameObject.Find ("Inventory Text").GetComponent<Text>();
 
@@ -72,7 +72,7 @@ public class UiController : MonoBehaviour {
 		this.moneyPay += cash;
 		this.moneyText = this.moneyPay + " $";
 		Money.text = this.moneyText;
-		MoneyKasse.text = this.moneyText;
+		MoneyTill.text = this.moneyText;
 	}
 
 	public void ReceiveChat(string chat) {
