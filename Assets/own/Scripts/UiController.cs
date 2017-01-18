@@ -35,6 +35,7 @@ public class UiController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		ReceiveMoney (1);
 
 	
 	}
