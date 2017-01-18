@@ -11,6 +11,7 @@ public class PersonContoller : MonoBehaviour {
 	public UiController Ui;
 	public Transform Inventory;
 	public Transform RightItem;
+	private Transform RightHand;
 	private Transform Ingredients;
 	private Transform Equipment;
 	private Transform Clients;
@@ -18,6 +19,7 @@ public class PersonContoller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.IsPickedUpRight = false;
+		this.RightHand = this.gameObject.transform.GetChild (0);
 
 		// Load UiController in order to execute member functions
 		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
@@ -30,9 +32,15 @@ public class PersonContoller : MonoBehaviour {
 	void Update () {
 		CheckForHit ();
 
+		this.holdItem ();
+
 		// Drop Inventory
 		if (Input.GetButtonDown ("Fire2")) {
 			this.dropItem ();
+		}
+
+		if (this.IsPickedUpRight) {
+			this.holdItem ();
 		}
 
 		if (Input.GetKeyDown (KeyCode.Q)) {
@@ -119,6 +127,38 @@ public class PersonContoller : MonoBehaviour {
 		}
 	}
 
+	void TogglePickpuItem() {
+		if (this.IsPickedUpRight) {
+			this.IsPickedUpRight = false;
+			this.RightItem = hit.transform;
+		} else {
+			this.IsPickedUpRight = true;
+			this.RightItem = null;
+		}
+		Debug.Log ("IsPickedUpRight: " + this.IsPickedUpRight);
+		Debug.Log("Item: " + hit.transform.gameObject);
+		Debug.Log("pickupItem: " + hit.transform.gameObject.GetComponent<Rigidbody>().useGravity);
+	}
+
+	private void holdItem() {
+		if(IsPickedUpRight && !this.RightHand.Equals(null)) {
+			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
+			Debug.Log ("RightHand " + this.RightHand.transform.position);
+
+			this.RightItem.position = this.RightHand.transform.position;
+		}
+	}
+
+
+	/*
+	 * Drop item: Clear Inventory
+	 */
+	private void dropItem() {
+		Inventory = null;
+		Ui.ReceiveItem (null);
+	}
+
+
 	/*
 	 * Raycast hits Ingredient
 	 */
@@ -127,27 +167,6 @@ public class PersonContoller : MonoBehaviour {
 		// Ui.ReceiveItem (this.Inventory.name);
 	}
 
-
-	void TogglePickpuItem() {
-		if (this.IsPickedUpRight) {
-			this.IsPickedUpRight = false;
-		} else {
-			this.IsPickedUpRight = true;
-		}
-		this.RightItem = hit.transform;
-		Debug.Log ("IsPickedUpRight: " + this.IsPickedUpRight);
-		Debug.Log("Item: " + hit.transform.gameObject);
-		Debug.Log("pickupItem: " + hit.transform.gameObject.GetComponent<Rigidbody>().useGravity);
-	}
-
-		
-	/*
-	 * Drop item: Clear Inventory
-	 */
-	private void dropItem() {
-		Inventory = null;
-		Ui.ReceiveItem (null);
-	}
 
 	/*
 	 * Empty Equipment: Clear DrinkIngredients out of Equipment
