@@ -31,7 +31,6 @@ public class PersonContoller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CheckForHit ();
-
 		this.holdItem ();
 
 		// Drop Inventory

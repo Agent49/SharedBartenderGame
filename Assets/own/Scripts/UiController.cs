@@ -19,6 +19,7 @@ public class UiController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("UiController");
 		CrosshairActive = GameObject.Find ("Crosshair active");
 		CrosshairInactive = GameObject.Find ("Crosshair inactive");
 		Money = GameObject.Find ("Money Text").GetComponent<Text>();
@@ -35,7 +36,7 @@ public class UiController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		ReceiveMoney (1);
+		// ReceiveMoney (1);
 
 	
 	}
