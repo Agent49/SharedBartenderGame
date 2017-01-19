@@ -73,18 +73,7 @@ namespace NewtonVR
                         }
                     }
 
-                    if (SteamVREnabled == true)
-                    {
-                        Integration = new NVRSteamVRIntegration();
-                        if (Integration.IsHmdPresent() == true)
-                        {
-                            return Integration.GetPlayspaceBounds();
-                        }
-                        else
-                        {
-                            Integration = null;
-                        }
-                    }
+
 
                     return Vector3.zero;
                 }
