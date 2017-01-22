@@ -19,10 +19,9 @@ public class PersonContoller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.IsPickedUpRight = false;
-		this.RightHand = this.gameObject.transform.GetChild (0);
-
+		// this.RightHand = this.gameObject.transform.GetChild (0);
 		// Load UiController in order to execute member functions
-		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
+		Ui = GameObject.FindGameObjectWithTag("DebugUI").GetComponent<UiController>();
 		Ingredients = GameObject.Find ("Ingredients").transform;
 		Equipment = GameObject.Find ("Equipment").transform;
 		Clients = GameObject.Find ("Clients").transform;

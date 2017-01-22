@@ -19,7 +19,6 @@ public class UiController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("UiController");
 		CrosshairActive = GameObject.Find ("Crosshair active");
 		CrosshairInactive = GameObject.Find ("Crosshair inactive");
 		Money = GameObject.Find ("Money Text").GetComponent<Text>();
