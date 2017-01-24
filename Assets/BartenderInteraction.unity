@@ -13334,7 +13334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c109ba17c55b0304e9b5442bae6e1c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 100
 --- !u!1 &1507055627
 GameObject:
   m_ObjectHideFlags: 0
@@ -13847,7 +13846,7 @@ GameObject:
   - component: {fileID: 1561310986}
   m_Layer: 0
   m_Name: Whisky_open
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18081,7 +18080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbb0d91772d7e8449b1e0503b5dbaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClockText: {fileID: 2039049494}
+  ClockText: {fileID: 0}
 --- !u!4 &2054622630
 Transform:
   m_ObjectHideFlags: 0

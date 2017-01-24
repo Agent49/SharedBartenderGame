@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class PersonContoller : MonoBehaviour {
 
 	private bool IsPickedUpRight;
-	private RaycastHit hit;
 	private float range = 10f;
+	private RaycastHit hit;
 	public UiController Ui;
 	public Transform Inventory;
 	public Transform RightItem;
@@ -19,7 +19,7 @@ public class PersonContoller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.IsPickedUpRight = false;
-		// this.RightHand = this.gameObject.transform.GetChild (0);
+		this.RightHand = this.gameObject.transform.GetChild (0);
 		// Load UiController in order to execute member functions
 		Ui = GameObject.FindGameObjectWithTag("DebugUI").GetComponent<UiController>();
 		Ingredients = GameObject.Find ("Ingredients").transform;
@@ -78,7 +78,6 @@ public class PersonContoller : MonoBehaviour {
 	void Interact() {
 		// If click on ingredient always replace inventory with it
 		if (hit.transform.IsChildOf (Ingredients)) {
-			// this.pickupItem ();
 			this.interactIngredient();
 		}
 
@@ -128,20 +127,21 @@ public class PersonContoller : MonoBehaviour {
 	void TogglePickpuItem() {
 		if (this.IsPickedUpRight) {
 			this.IsPickedUpRight = false;
-			this.RightItem = hit.transform;
+			this.RightItem = null;
 		} else {
 			this.IsPickedUpRight = true;
-			this.RightItem = null;
+			this.RightItem = hit.transform;
 		}
 		Debug.Log ("IsPickedUpRight: " + this.IsPickedUpRight);
 		Debug.Log("Item: " + hit.transform.gameObject);
+		Debug.Log ("RightItem: " + this.RightItem);
 		Debug.Log("pickupItem: " + hit.transform.gameObject.GetComponent<Rigidbody>().useGravity);
 	}
 
-	private void holdItem() {
-		if(IsPickedUpRight && !this.RightHand.Equals(null)) {
+	void holdItem() {
+		if(IsPickedUpRight && !this.RightItem.Equals(null)) {
 			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
-			Debug.Log ("RightHand " + this.RightHand.transform.position);
+			// Debug.Log ("RightHand " + this.RightHand.transform.position);
 
 			this.RightItem.position = this.RightHand.transform.position;
 		}

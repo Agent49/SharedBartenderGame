@@ -14,8 +14,8 @@ public class Clock : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		ti += Time.deltaTime;
-		ClockText.text = ti.ToString ("00:00");
+		// ti += Time.deltaTime;
+		// ClockText.text = ti.ToString ("00:00");
 		
 	}
 }
