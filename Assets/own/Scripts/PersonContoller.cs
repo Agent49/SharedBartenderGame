@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class PersonContoller : MonoBehaviour {
 
-	private bool IsPickedUpRight;
+	private bool isPickedUpRight;
+	private bool justDropped;
 	private float range = 10f;
 	private RaycastHit hit;
 	public UiController Ui;
@@ -18,7 +19,7 @@ public class PersonContoller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.IsPickedUpRight = false;
+		this.isPickedUpRight = false;
 		this.RightHand = this.gameObject.transform.GetChild (0);
 		// Load UiController in order to execute member functions
 		Ui = GameObject.FindGameObjectWithTag("DebugUI").GetComponent<UiController>();
@@ -29,15 +30,20 @@ public class PersonContoller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		CheckForHit ();
-		this.holdItem ();
+		
 
 		// Drop Inventory
-		if (Input.GetButtonDown ("Fire2")) {
-			this.dropItem ();
+		if (Input.GetButtonDown ("Fire1")) {
+			this.DropItem ();
 		}
 
-		if (this.IsPickedUpRight) {
+		CheckForHit ();
+
+		this.holdItem ();
+
+		this.justDropped = false;
+
+		if (this.isPickedUpRight) {
 			this.holdItem ();
 		}
 
@@ -96,7 +102,7 @@ public class PersonContoller : MonoBehaviour {
 	}
 
 	private void interactIngredient() {
-		this.TogglePickpuItem ();
+		this.PickupItem ();
 	}
 
 	/*
@@ -123,48 +129,31 @@ public class PersonContoller : MonoBehaviour {
 			hit.transform.SendMessage ("SmallTalk");			
 		}
 	}
-
-	void TogglePickpuItem() {
-		if (this.IsPickedUpRight) {
-			this.IsPickedUpRight = false;
-			this.RightItem = null;
-		} else {
-			this.IsPickedUpRight = true;
+		
+	void PickupItem() {
+		if (!this.isPickedUpRight && !this.justDropped) {
+			this.isPickedUpRight = true;
 			this.RightItem = hit.transform;
+			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
 		}
-		Debug.Log ("IsPickedUpRight: " + this.IsPickedUpRight);
-		Debug.Log("Item: " + hit.transform.gameObject);
-		Debug.Log ("RightItem: " + this.RightItem);
-		Debug.Log("pickupItem: " + hit.transform.gameObject.GetComponent<Rigidbody>().useGravity);
+	}
+
+	void DropItem() {
+		if(this.isPickedUpRight) {
+			this.isPickedUpRight = false;
+			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			this.RightItem = null;
+			this.justDropped = true;
+		}
 	}
 
 	void holdItem() {
-		if(IsPickedUpRight && !this.RightItem.Equals(null)) {
-			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
+		if(isPickedUpRight && !this.RightItem.Equals(null)) {
 			// Debug.Log ("RightHand " + this.RightHand.transform.position);
 
 			this.RightItem.position = this.RightHand.transform.position;
 		}
 	}
-
-
-	/*
-	 * Drop item: Clear Inventory
-	 */
-	private void dropItem() {
-		Inventory = null;
-		Ui.ReceiveItem (null);
-	}
-
-
-	/*
-	 * Raycast hits Ingredient
-	 */
-	private void pickupItem() {
-		// this.Inventory = hit.transform;
-		// Ui.ReceiveItem (this.Inventory.name);
-	}
-
 
 	/*
 	 * Empty Equipment: Clear DrinkIngredients out of Equipment
