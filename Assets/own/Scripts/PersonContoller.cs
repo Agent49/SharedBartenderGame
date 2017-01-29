@@ -46,14 +46,6 @@ public class PersonContoller : MonoBehaviour {
 		if (this.isPickedUpRight) {
 			this.holdItem ();
 		}
-
-		if (Input.GetKeyDown (KeyCode.Q)) {
-			Debug.Log ("Q");
-		}
-
-		if (Input.GetKeyDown (KeyCode.E)) {
-			Debug.Log ("E");
-		}
 	}
 
 	/*
@@ -149,10 +141,26 @@ public class PersonContoller : MonoBehaviour {
 
 	void holdItem() {
 		if(isPickedUpRight && !this.RightItem.Equals(null)) {
-			// Debug.Log ("RightHand " + this.RightHand.transform.position);
-
 			this.RightItem.position = this.RightHand.transform.position;
+
+			Debug.Log (this.RightItem.transform.rotation);
+
+			if (Input.GetKey (KeyCode.E)) {
+				this.fillIn ();
+			} else {
+				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
+				RightItem.transform.rotation = Quaternion.Slerp (RightItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
+			}
+			if (Input.GetKey (KeyCode.E)) {
+				this.fillIn ();
+			}
 		}
+	}
+
+	void fillIn() {
+//		this.RightItem.transform.RotateAround (transform.position, transform.up, Time.deltaTime * 90f);
+		this.RightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);
+		Debug.Log ("fillIn");
 	}
 
 	/*
