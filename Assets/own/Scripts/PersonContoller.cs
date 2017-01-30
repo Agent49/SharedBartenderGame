@@ -5,14 +5,17 @@ using System.Collections.Generic;
 
 public class PersonContoller : MonoBehaviour {
 
+	private bool isPickedUpLeft;
 	private bool isPickedUpRight;
 	private bool justDropped;
+	public Transform LeftItem;
+	public Transform RightItem;
+	private Transform LeftHand;
+	private Transform RightHand;
 	private float range = 10f;
 	private RaycastHit hit;
 	public UiController Ui;
 	public Transform Inventory;
-	public Transform RightItem;
-	private Transform RightHand;
 	private Transform Ingredients;
 	private Transform Equipment;
 	private Transform Clients;
@@ -20,7 +23,8 @@ public class PersonContoller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.isPickedUpRight = false;
-		this.RightHand = this.gameObject.transform.GetChild (0);
+		this.LeftHand = this.gameObject.transform.GetChild (0);
+		this.RightHand = this.gameObject.transform.GetChild (1);
 		// Load UiController in order to execute member functions
 		Ui = GameObject.FindGameObjectWithTag("DebugUI").GetComponent<UiController>();
 		Ingredients = GameObject.Find ("Ingredients").transform;
@@ -33,7 +37,7 @@ public class PersonContoller : MonoBehaviour {
 		
 
 		// Drop Inventory
-		if (Input.GetButtonDown ("Fire1")) {
+		if (Input.GetButtonDown ("Fire1") || Input.GetButtonDown ("Fire2")) {
 			this.DropItem ();
 		}
 
@@ -58,7 +62,7 @@ public class PersonContoller : MonoBehaviour {
 			// Check if item is interactable
 			if(hit.transform.tag.Equals("Interaction")) {
 				Ui.ActivateCrosshair();
-				if (Input.GetButtonDown ("Fire1"))
+				if (Input.GetButtonDown ("Fire1") || Input.GetButtonDown ("Fire2"))
 					Interact ();
 			} else {
 				Ui.DeactivateCrosshair();
@@ -123,15 +127,25 @@ public class PersonContoller : MonoBehaviour {
 	}
 		
 	void PickupItem() {
-		if (!this.isPickedUpRight && !this.justDropped) {
+		if (Input.GetButtonDown("Fire1") && !this.isPickedUpLeft && !this.justDropped) {
+			this.isPickedUpLeft = true;
+			this.LeftItem = hit.transform;
+			this.LeftItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
+		} else if (Input.GetButtonDown("Fire2") && !this.isPickedUpRight && !this.justDropped) {
 			this.isPickedUpRight = true;
 			this.RightItem = hit.transform;
 			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
-		}
+		} 
 	}
 
 	void DropItem() {
-		if(this.isPickedUpRight) {
+		if(Input.GetButtonDown ("Fire1") && this.isPickedUpLeft) {
+			this.isPickedUpLeft = false;
+			this.LeftItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			this.LeftItem = null;
+			this.justDropped = true;
+		}
+		else if(Input.GetButtonDown ("Fire2") && this.isPickedUpRight) {
 			this.isPickedUpRight = false;
 			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
 			this.RightItem = null;
@@ -140,10 +154,18 @@ public class PersonContoller : MonoBehaviour {
 	}
 
 	void holdItem() {
+		if(isPickedUpLeft && !this.LeftItem.Equals(null)) {
+			this.LeftItem.position = this.LeftHand.transform.position;
+
+			if (Input.GetKey (KeyCode.Q)) {
+				this.fillIn ();
+			} else {
+				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
+				LeftItem.transform.rotation = Quaternion.Slerp (LeftItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
+			}
+		}
 		if(isPickedUpRight && !this.RightItem.Equals(null)) {
 			this.RightItem.position = this.RightHand.transform.position;
-
-			Debug.Log (this.RightItem.transform.rotation);
 
 			if (Input.GetKey (KeyCode.E)) {
 				this.fillIn ();
@@ -151,16 +173,17 @@ public class PersonContoller : MonoBehaviour {
 				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
 				RightItem.transform.rotation = Quaternion.Slerp (RightItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
 			}
-			if (Input.GetKey (KeyCode.E)) {
-				this.fillIn ();
-			}
 		}
 	}
 
 	void fillIn() {
-//		this.RightItem.transform.RotateAround (transform.position, transform.up, Time.deltaTime * 90f);
-		this.RightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);
-		Debug.Log ("fillIn");
+		if(Input.GetKey(KeyCode.Q)) {
+			this.LeftItem.Rotate(-Vector3.up * Time.deltaTime * 50.0f);
+		} 
+		else if(Input.GetKey(KeyCode.E)) 
+		{
+			this.RightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);			
+		}
 	}
 
 	/*
