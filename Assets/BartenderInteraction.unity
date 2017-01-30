@@ -1365,10 +1365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
-  Drunkenness: 0
   Request: {fileID: 0}
-  tmp: 
-  Message: 
   Ui: {fileID: 0}
 --- !u!1 &204307051
 GameObject:
@@ -3549,10 +3546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
-  Drunkenness: 0
   Request: {fileID: 0}
-  tmp: 
-  Message: 
   Ui: {fileID: 0}
 --- !u!23 &477257756
 MeshRenderer:
@@ -4166,10 +4160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
-  Drunkenness: 0
   Request: {fileID: 0}
-  tmp: 
-  Message: 
   Ui: {fileID: 0}
 --- !u!23 &538514404
 MeshRenderer:
@@ -10398,8 +10389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c3a4a4b486f6048bee6cf79f8ac13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftItem: {fileID: 0}
-  RightItem: {fileID: 0}
   Ui: {fileID: 0}
   Inventory: {fileID: 0}
 --- !u!1 &1231317980
@@ -10836,10 +10825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
-  Drunkenness: 0
   Request: {fileID: 0}
-  tmp: 
-  Message: 
   Ui: {fileID: 0}
 --- !u!23 &1299462764
 MeshRenderer:
@@ -11253,13 +11239,13 @@ Transform:
   m_PrefabParentObject: {fileID: 400024, guid: e6ff005e7d019b64bb6637b2e350a59e, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1345308242}
-  m_LocalRotation: {x: 0.000000030908623, y: 0.7071068, z: 0.7071067, w: 0.000000030908616}
-  m_LocalPosition: {x: 5.6544743, y: -1.4729439, z: -8.26}
+  m_LocalRotation: {x: 0.70538104, y: 0.049373183, z: 0.04937324, w: -0.7053809}
+  m_LocalPosition: {x: 5.8140182, y: -1.4729428, z: -8.170738}
   m_LocalScale: {x: -158.44511, y: -158.44511, z: -7.834173}
   m_Children: []
   m_Father: {fileID: 204307052}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -8.008}
 --- !u!114 &1345308244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12895,10 +12881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
-  Drunkenness: 0
   Request: {fileID: 0}
-  tmp: 
-  Message: 
   Ui: {fileID: 0}
 --- !u!1 &1470418473
 GameObject:

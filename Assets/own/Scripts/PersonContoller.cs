@@ -176,8 +176,8 @@ public class PersonContoller : MonoBehaviour {
 			if (Input.GetKey (KeyCode.Q)) {
 				FillIn ();
 			} else {
-				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
-				leftItem.transform.rotation = Quaternion.Slerp (leftItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
+//				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
+//				leftItem.transform.rotation = Quaternion.Slerp (leftItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
 			}
 		}
 		if(isPickedUpRight && !rightItem.Equals(null)) {
@@ -198,6 +198,10 @@ public class PersonContoller : MonoBehaviour {
 	private void FillIn() {
 		if(Input.GetKey(KeyCode.Q)) {
 			leftItem.Rotate(-Vector3.up * Time.deltaTime * 50.0f);
+			float angle = leftItem.transform.localEulerAngles.x;
+			if ((0.0f < angle) && (angle < 180.0f)) {
+				Debug.Log (angle);
+			}
 		} 
 		else if(Input.GetKey(KeyCode.E)) 
 		{
