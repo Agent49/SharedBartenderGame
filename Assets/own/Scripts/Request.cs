@@ -10,13 +10,14 @@ public class Request : MonoBehaviour {
 	public float InitialTime;
 	public int Tip;
 
-	public static float K;
-
+	/*
+	 * Constructed everytime a client makes a request
+	 */
 	public Request() {
 		// 1.) Get a drinklist
 		string[] drinkList = Drink.GetDrinkList ();
 		// 2.) Choose one drink randomly
-		this.Drink = new Drink(drinkList[Random.Range(0, drinkList.Length)]);
+		Drink = new Drink(drinkList[Random.Range(0, drinkList.Length)]);
 		// 3.) Time to evaluate duration
 		InitialTime = Time.time;
 	}
@@ -31,29 +32,29 @@ public class Request : MonoBehaviour {
 	 * @return rate: 0 to 5
 	 */ 	
 	public int RateMix(Dictionary<string, decimal> Mix) {
-		this.Rate = 0;
+		Rate = 0;
 
 		// If list of ingredients missmatches
-		if (Mix.Count != this.Drink.Ingredients.Count) {
-			this.Match = false;
+		if (Mix.Count != Drink.Ingredients.Count) {
+			Match = false;
 			return 0;
 		}
 
 		// Iterate over targetDrink
-		foreach(var item in this.Drink.Ingredients) {
+		foreach(var item in Drink.Ingredients) {
 			decimal amount;
 			// If ingredient is in Shaker
 			if (Mix.TryGetValue (item.Key, out amount)) {
-				this.Match = true;
+				Match = true;
 				// Rate up if amount is exact
 				if (amount == item.Value)
-					this.Rate++;
+					Rate++;
 			} else {
-				this.Match = false;
+				Match = false;
 				break;
 			}
 		}
-		return this.Rate;
+		return Rate;
 	}
 
 	/*
@@ -64,7 +65,7 @@ public class Request : MonoBehaviour {
 	 * Know your Clients! Know how to mix good and fast!
 	 */
 	public int CalculateTip(float generousness) {
-		this.Tip = 0;
+		Tip = 0;
 		int complexity = Drink.Ingredients.Count;
 		// Is the Client willing to give a tip?
 		float kRandom = Random.Range (0.0f, 1.0f) * generousness;
@@ -74,10 +75,10 @@ public class Request : MonoBehaviour {
 		float maxTime = 10f + Mathf.Pow ((float)complexity, 2.0f);
 
 		if (true || (kRandom > 0.5f) && (duration < maxTime)) {
-			this.Tip = (int)Mathf.Round ((float)Drink.Price * Rate * 0.3f);
+			Tip = (int)Mathf.Round ((float)Drink.Price * Rate * 0.3f);
 		}
 
-		Debug.Log ("Tip: " + this.Tip);
-		return this.Tip;
+		Debug.Log ("Tip: " + Tip);
+		return Tip;
 	}
 }

@@ -37,24 +37,24 @@ public class Character : MonoBehaviour {
 	 * Character: Call constructor to assign specific character properties
 	 */
 	public Character(string Name) {
-		this.Name = Name;
-		this.SetProperties ();
+		Name = Name;
+		SetProperties ();
 	}
 
 	private void SetProperties() {
-		switch(this.Name) {
+		switch(Name) {
 		// Does not drink alcohol at all, is a bit Hipster
 		case "Bastian":
-			this.Durability = 1.0f;
-			this.Generousness = new float[] { 0.0f, 0.1f, 0.2f };
-			this.FavoriteDrinks = new string[] { "Cola" };
-			this.Talk = TalkList [this.Name];
+			Durability = 1.0f;
+			Generousness = new float[] { 0.0f, 0.1f, 0.2f };
+			FavoriteDrinks = new string[] { "Cola" };
+			Talk = TalkList [Name];
 			break;
 		case "Klaus":
-			this.Durability = 3.5f;
-			this.Generousness = new float[] { 0.8f, 0.85f, 1.0f };
-			this.FavoriteDrinks = new string[] { "Beer" };
-			this.Talk = TalkList [this.Name];
+			Durability = 3.5f;
+			Generousness = new float[] { 0.8f, 0.85f, 1.0f };
+			FavoriteDrinks = new string[] { "Beer" };
+			Talk = TalkList [Name];
 			break;
 		}
 	}

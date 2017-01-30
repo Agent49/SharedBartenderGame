@@ -4,79 +4,82 @@ using System.Collections.Generic;
 
 public class ClientController : MonoBehaviour {
 	
-	private string Name;
 	public Character Character;
-	public int Drunkenness;
 	public Request Request;
-	public string tmp;
-	public string Message;
 	public UiController Ui;
 
+	private string name;
+	private int drunkenness;
+	private string message;
+
+	/*
+	 * Assign some initial properties and references to scene
+	 */
 	void Start () {
-		this.Name = this.gameObject.name;
-		this.Character = new Character (this.Name);
-		this.Drunkenness = 0;
-		// Debug.Log (this.Character.Talk["hello"][0]);
+		name = gameObject.name;
+		Character = new Character (name);
+		drunkenness = 0;
 		Ui = GameObject.FindGameObjectWithTag("DebugUI").GetComponent<UiController>();
 		Invoke ("GenerateRequest", 1);
 	}
 
 	/*
-	 * GenerateRequest(): Determines what the client wants to drink
+	 * Determines what the client wants to drink
 	 */
-	void GenerateRequest() {
-		this.Request = new Request ();
-		Ui.ReceiveChat (this.Name + ": I would like to have a " + this.Request.Drink.Name + "\n");
+	private void GenerateRequest() {
+		Request = new Request ();
+		Ui.ReceiveChat (name + ": I would like to have a " + Request.Drink.Name + "\n");
 	}
 		
 	/* 
-	 * GetDrink: Will be called when Person gives client a drink
+	 * Will be called when Person gives client a drink
 	 */
-	void GetDrink(Transform Drink) {
+	public void GetDrink(Transform Drink) {
 		bool isEquipment = Drink.IsChildOf (GameObject.Find ("Equipment").transform);
 		if(isEquipment) {
 			Dictionary<string, decimal> DrinkIngredients = Drink.GetComponent<DrinkController> ().DrinkIngredients;
 			if (DrinkIngredients != null && DrinkIngredients.Count > 0) {
-				this.TakeDrink (DrinkIngredients);
+				TakeDrink (DrinkIngredients);
 			} else {
 				Debug.Log ("There's no damn drink in it!");
 			}
 		} else {
-			this.TakeDrink(new Dictionary<string, decimal> () { { Drink.name, 200m } });
+			TakeDrink(new Dictionary<string, decimal> () { { Drink.name, 200m } });
 		}
 	}
 
 	/*
-	 * TakeDrink: If Drinkk matches process action
+	 * If Drink matches process action
 	 * 
 	 * @return bool: RequestMatch
 	 */
-	bool TakeDrink(Dictionary<string, decimal> Mix) {
-		int rate = this.Request.RateMix(Mix);
+	private bool TakeDrink(Dictionary<string, decimal> Mix) {
+		int rate = Request.RateMix(Mix);
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
-		if (this.Request.Match) {
-			this.GiveMoney ();
-			this.GenerateRequest ();
+		if (Request.Match) {
+			GiveMoney ();
+			GenerateRequest ();
 			return true;
 		} else {
-			Ui.ReceiveChat(this.Name + ": That was not what I've ordered! :(\n");
+			Ui.ReceiveChat(name + ": That was not what I've ordered! :(\n");
 			return false;
 		}
 	}
 
-	void GiveMoney() {
-		this.Request.CalculateTip (this.Character.Generousness[this.Drunkenness]);
-		int money = (int)Mathf.Round ((float)this.Request.Drink.Price + this.Request.Tip);
+	/*
+	 * Give price and calculated tip to bar tender 
+	 */
+	private void GiveMoney() {
+		Request.CalculateTip (Character.Generousness[drunkenness]);
+		int money = (int)Mathf.Round ((float)Request.Drink.Price + Request.Tip);
 		Ui.ReceiveMoney (money);
-		Ui.ReceiveChat(this.Name + ": Thank you, sir! :)\n");		
+		Ui.ReceiveChat(name + ": Thank you, sir! :)\n");		
 	}
 
-	void AssessSatisfaction() {
-		
-	}
-
-
-	void SmallTalk() {
+	/*
+	 * Display smalltalk messages
+	 */
+	private void SmallTalk() {
 		Debug.Log ("Do you want something from me?");
 	}
 }

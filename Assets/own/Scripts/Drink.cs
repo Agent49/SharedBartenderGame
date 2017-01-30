@@ -33,33 +33,42 @@ public class Drink : MonoBehaviour {
 		{"Cola", 0}, {"Orange", 0}, {"Pineapple", 0}, {"Grenadine", 0}, {"Beer", 5}, {"Lemon", 0}, {"Schnapps", 40}
 	};
 
+	/*
+	 * Contruct drink with all its ingredients by name
+	 */
 	public Drink(string name) {
-		this.Name = name;
-		this.SetDrink ();
+		Name = name;
+		SetDrink ();
 	}
 
+	/*
+	 * @return: array of key which are names of drinks
+	 */
 	public static string[] GetDrinkList() {
 		return drinkList.Keys.ToArray ();
 	}
 
+	/*
+	 * Set properties of a drink like ingredients and price
+	 */
 	// TODO: Read everything from xml... better data structure
 	private void SetDrink() {
-		this.Ingredients = drinkList [this.Name];
-		switch(this.Name) {
+		Ingredients = drinkList [Name];
+		switch(Name) {
 		case "Beer":
-			this.Price = 3;
+			Price = 3;
 			break;
 		case "Cola":
-			this.Price = 2;
+			Price = 2;
 			break;
 		case "Diesel":
-			this.Price = 2.5m;
+			Price = 2.5m;
 			break;
 		case "Cuba Libre":
-			this.Price = 6;
+			Price = 6;
 			break;
 		case "Sex on the Beach":
-			this.Price = 6.5m;
+			Price = 6.5m;
 			break;
 		}
 	}

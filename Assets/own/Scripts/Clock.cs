@@ -5,11 +5,11 @@ using UnityEngine;
 public class Clock : MonoBehaviour {
 
 	public TextMesh ClockText;
-	private float ti;
+	private float startTime;
 
 	// Use this for initialization
 	void Start () {
-		ti = 0;
+		startTime = 0;
 	}
 	
 	// Update is called once per frame
