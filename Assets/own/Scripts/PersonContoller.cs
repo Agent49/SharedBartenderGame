@@ -5,50 +5,54 @@ using System.Collections.Generic;
 
 public class PersonContoller : MonoBehaviour {
 
+	public UiController Ui;
+	public Transform Inventory;
+
 	private bool isPickedUpLeft;
 	private bool isPickedUpRight;
 	private bool justDropped;
-	public Transform LeftItem;
-	public Transform RightItem;
-	private Transform LeftHand;
-	private Transform RightHand;
 	private float range = 10f;
 	private RaycastHit hit;
-	public UiController Ui;
-	public Transform Inventory;
-	private Transform Ingredients;
-	private Transform Equipment;
-	private Transform Clients;
+	private Transform leftItem;
+	private Transform rightItem;
+	private Transform leftHand;
+	private Transform rightHand;
+	private Transform ingredients;
+	private Transform equipment;
+	private Transform clients;
 
-	// Use this for initialization
+	/*
+	 * Initialize often used members once which were declared above
+	 */
 	void Start () {
-		this.isPickedUpRight = false;
-		this.LeftHand = this.gameObject.transform.GetChild (0);
-		this.RightHand = this.gameObject.transform.GetChild (1);
+		isPickedUpRight = false;
+		leftHand = gameObject.transform.GetChild (0);
+		rightHand = gameObject.transform.GetChild (1);
 		// Load UiController in order to execute member functions
 		Ui = GameObject.FindGameObjectWithTag("DebugUI").GetComponent<UiController>();
-		Ingredients = GameObject.Find ("Ingredients").transform;
-		Equipment = GameObject.Find ("Equipment").transform;
-		Clients = GameObject.Find ("Clients").transform;
+		ingredients = GameObject.Find ("Ingredients").transform;
+		equipment = GameObject.Find ("Equipment").transform;
+		clients = GameObject.Find ("Clients").transform;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	/*
+	 * Check for user inputs and call permament functions if activated
+	 */
+	void Update () {	
 
 		// Drop Inventory
 		if (Input.GetButtonDown ("Fire1") || Input.GetButtonDown ("Fire2")) {
-			this.DropItem ();
+			DropItem ();
 		}
 
 		CheckForHit ();
 
-		this.holdItem ();
+		HoldItem ();
 
-		this.justDropped = false;
+		justDropped = false;
 
-		if (this.isPickedUpRight) {
-			this.holdItem ();
+		if (isPickedUpRight) {
+			HoldItem ();
 		}
 	}
 
@@ -79,119 +83,134 @@ public class PersonContoller : MonoBehaviour {
 	 */
 	void Interact() {
 		// If click on ingredient always replace inventory with it
-		if (hit.transform.IsChildOf (Ingredients)) {
-			this.interactIngredient();
+		if (hit.transform.IsChildOf (ingredients)) {
+			InteractIngredient();
 		}
 
 		// If hit Equipment
-		if (hit.transform.IsChildOf (Equipment)) {
-			this.interactEquipment ();
+		if (hit.transform.IsChildOf (equipment)) {
+			InteractEquipment ();
 		}
 
-		if (hit.transform.IsChildOf (Clients)) {
-			this.interactClient ();
+		if (hit.transform.IsChildOf (clients)) {
+			InteractClient ();
 		}
 		// Empty Equipment if it hits the sink
 		if(hit.transform.gameObject.name.Equals("Sink")) {
-			this.emptyEquipment ();
+			EmptyEquipment ();
 		}
 	}
 
-	private void interactIngredient() {
-		this.PickupItem ();
+	/*
+	 * Ingredients are to pickup, mix and so on
+	 */
+	private void InteractIngredient() {
+		PickupItem ();
 	}
 
 	/*
 	 * Raycast hits Equipment
 	 */
-	private void interactEquipment() {
+	private void InteractEquipment() {
 		// If nothing in Inventory or other Equipment, pickup this!
-		if (this.Inventory == null || this.Inventory.IsChildOf (Equipment))
-			// this.pickupItem ();
+		if (Inventory == null || Inventory.IsChildOf (equipment))
+			// pickupItem ();
 
 		// If Ingredient in Inventory, mix it!
-		if(this.Inventory.IsChildOf(Ingredients)) 
+		if(Inventory.IsChildOf(ingredients)) 
 			hit.transform.SendMessage ("AddIngredient", Inventory);
 	}
 
 	/*
 	 * Raycast hits Client
 	 */
-	private void interactClient() {
-		if (this.Inventory != null) {
-			hit.transform.SendMessage ("GetDrink", this.Inventory);
+	private void InteractClient() {
+		if (Inventory != null) {
+			hit.transform.SendMessage ("GetDrink", Inventory);
 		}
 		else {
 			hit.transform.SendMessage ("SmallTalk");			
 		}
 	}
-		
-	void PickupItem() {
-		if (Input.GetButtonDown("Fire1") && !this.isPickedUpLeft && !this.justDropped) {
-			this.isPickedUpLeft = true;
-			this.LeftItem = hit.transform;
-			this.LeftItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
-		} else if (Input.GetButtonDown("Fire2") && !this.isPickedUpRight && !this.justDropped) {
-			this.isPickedUpRight = true;
-			this.RightItem = hit.transform;
-			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
+
+	/*
+	 * Pickup an item with the left or right hand
+	 */
+	private void PickupItem() {
+		if (Input.GetButtonDown("Fire1") && !isPickedUpLeft && !justDropped) {
+			isPickedUpLeft = true;
+			leftItem = hit.transform;
+			leftItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
+		} else if (Input.GetButtonDown("Fire2") && !isPickedUpRight && !justDropped) {
+			isPickedUpRight = true;
+			rightItem = hit.transform;
+			rightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
 		} 
 	}
 
-	void DropItem() {
-		if(Input.GetButtonDown ("Fire1") && this.isPickedUpLeft) {
-			this.isPickedUpLeft = false;
-			this.LeftItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
-			this.LeftItem = null;
-			this.justDropped = true;
+	/*
+	 * Drop an item you hold in your left or right hand
+	 */
+	private void DropItem() {
+		if(Input.GetButtonDown ("Fire1") && isPickedUpLeft) {
+			isPickedUpLeft = false;
+			leftItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			leftItem = null;
+			justDropped = true;
 		}
-		else if(Input.GetButtonDown ("Fire2") && this.isPickedUpRight) {
-			this.isPickedUpRight = false;
-			this.RightItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
-			this.RightItem = null;
-			this.justDropped = true;
+		else if(Input.GetButtonDown ("Fire2") && isPickedUpRight) {
+			isPickedUpRight = false;
+			rightItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			rightItem = null;
+			justDropped = true;
 		}
 	}
 
-	void holdItem() {
-		if(isPickedUpLeft && !this.LeftItem.Equals(null)) {
-			this.LeftItem.position = this.LeftHand.transform.position;
+	/*
+	 * After picking up an item once, hold it all along the frames within update()
+	 */
+	private void HoldItem() {
+		if(isPickedUpLeft && !leftItem.Equals(null)) {
+			leftItem.position = leftHand.transform.position;
 
 			if (Input.GetKey (KeyCode.Q)) {
-				this.fillIn ();
+				FillIn ();
 			} else {
 				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
-				LeftItem.transform.rotation = Quaternion.Slerp (LeftItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
+				leftItem.transform.rotation = Quaternion.Slerp (leftItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
 			}
 		}
-		if(isPickedUpRight && !this.RightItem.Equals(null)) {
-			this.RightItem.position = this.RightHand.transform.position;
+		if(isPickedUpRight && !rightItem.Equals(null)) {
+			rightItem.position = rightHand.transform.position;
 
 			if (Input.GetKey (KeyCode.E)) {
-				this.fillIn ();
+				FillIn ();
 			} else {
 				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
-				RightItem.transform.rotation = Quaternion.Slerp (RightItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
+				rightItem.transform.rotation = Quaternion.Slerp (rightItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
 			}
 		}
 	}
 
-	void fillIn() {
+	/*
+	 * Simulates a fill-in movement by rotation the object
+	 */
+	private void FillIn() {
 		if(Input.GetKey(KeyCode.Q)) {
-			this.LeftItem.Rotate(-Vector3.up * Time.deltaTime * 50.0f);
+			leftItem.Rotate(-Vector3.up * Time.deltaTime * 50.0f);
 		} 
 		else if(Input.GetKey(KeyCode.E)) 
 		{
-			this.RightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);			
+			rightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);			
 		}
 	}
 
 	/*
 	 * Empty Equipment: Clear DrinkIngredients out of Equipment
 	 */
-	private void emptyEquipment() {
-		if(this.Inventory.IsChildOf(Equipment)) {
-			this.Inventory.GetComponent<DrinkController> ().EmptyEquipment ();
+	private void EmptyEquipment() {
+		if(Inventory.IsChildOf(equipment)) {
+			Inventory.GetComponent<DrinkController> ().EmptyEquipment ();
 		}		
 	}
 }
