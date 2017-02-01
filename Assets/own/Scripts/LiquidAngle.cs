@@ -5,6 +5,7 @@ using UnityEngine;
 public class LiquidAngle : MonoBehaviour {
 
 	public ParticleSystem Liquid;
+    public TextMesh DebugText;
 	// Use this for initialization
 	void Start () {
 		
@@ -12,9 +13,16 @@ public class LiquidAngle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.rotation.x < 180 && transform.rotation.x > 0) {
+        var em = Liquid.emission;
+        double fluss;
+       
+		if (transform.rotation.eulerAngles.x < 90) {
 			Liquid.Play();
-		} else {
+            fluss = transform.rotation.eulerAngles.x * 2.5;
+
+            em.rateOverTime = System.Convert.ToSingle(fluss);
+            DebugText.text = fluss.ToString();
+        } else {
 			Liquid.Stop();
 		}
 		
