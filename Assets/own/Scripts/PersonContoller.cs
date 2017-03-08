@@ -13,6 +13,7 @@ public class PersonContoller : MonoBehaviour {
 	private bool justDropped;
 	private float range = 10f;
 	private RaycastHit hit;
+
 	private Transform leftItem;
 	private Transform rightItem;
 	private Transform leftHand;

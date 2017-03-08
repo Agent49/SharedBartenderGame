@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LiquidRotation : MonoBehaviour {
+public class AwakeTest : MonoBehaviour {
+
+	void Awake() {
+//		Debug.Log ("Awake!");
+	}
 
 	// Use this for initialization
 	void Start () {
-		
+//		Debug.Log ("Start!");		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.rotation = Quaternion.identity;
-		}
+		
+	}
 }
