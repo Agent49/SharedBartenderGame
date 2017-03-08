@@ -118,7 +118,7 @@ public class PersonContoller : MonoBehaviour {
 			// pickupItem ();
 
 		// If Ingredient in Inventory, mix it!
-		if(Inventory.IsChildOf(ingredients)) 
+		if(Inventory.IsChildOf(GameMaster.Ingredients)) 
 			hit.transform.SendMessage ("AddIngredient", Inventory);
 	}
 

@@ -15,7 +15,8 @@ public class LiquidController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ParticleSource = gameObject.transform.GetChild (0);
-		ingredients = GameObject.Find ("Ingredients").transform;
+		// This function will be called for each attachement to a GameObject
+		// ingredients = GameObject.Find ("Ingredients").transform;
 	}
 	
 	// Update is called once per frame
