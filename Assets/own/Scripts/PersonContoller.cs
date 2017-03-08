@@ -84,7 +84,7 @@ public class PersonContoller : MonoBehaviour {
 	 */
 	void Interact() {
 		// If click on ingredient always replace inventory with it
-		if (hit.transform.IsChildOf (ingredients)) {
+		if (hit.transform.IsChildOf (GameMaster.Ingredients)) {
 			InteractIngredient();
 		}
 
