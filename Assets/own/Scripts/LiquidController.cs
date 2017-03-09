@@ -7,7 +7,6 @@ public class LiquidController : MonoBehaviour {
 	private float range = 10f;
 
 	public ParticleSystem Liquid;
-    public TextMesh DebugText;
 	private Transform ParticleSource;
 	private RaycastHit hit;
 
@@ -33,6 +32,10 @@ public class LiquidController : MonoBehaviour {
         } else {
 			Liquid.Stop();
 		}
+		
+	}
+
+	private void FillIn() {
 		
 	}
 }
