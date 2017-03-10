@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour {
 	
-	public decimal Amount;
+	public decimal Volume;
 	public decimal Price;
 	public Color lColor;
 
-	public Ingredient(decimal amount, decimal price, Color color){
-		Amount = amount;
+	public Ingredient(decimal volume, decimal price, Color color){
+		Volume = volume;
 		Price = price;
 		lColor = color;
 	}

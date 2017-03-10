@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2758,7 +2758,7 @@ GameObject:
   - component: {fileID: 368233171}
   - component: {fileID: 368233170}
   m_Layer: 0
-  m_Name: Glas_Bier (1)
+  m_Name: GlassBeer_001
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7722,7 +7722,6 @@ GameObject:
   - component: {fileID: 785650730}
   - component: {fileID: 785650733}
   - component: {fileID: 785650732}
-  - component: {fileID: 785650731}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -7743,18 +7742,6 @@ Transform:
   m_Father: {fileID: 1561310985}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &785650731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 785650729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55002460ae3c6fd4fbbd88d04517b010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Liquid: {fileID: 0}
 --- !u!199 &785650732
 ParticleSystemRenderer:
   serializedVersion: 2
@@ -7860,7 +7847,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -206074656
+  randomSeed: -2109698203
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18552,10 +18539,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561310984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55002460ae3c6fd4fbbd88d04517b010, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d5916422556ad488dbdc737b2ad002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Liquid: {fileID: 0}
+  Name: 
 --- !u!1 &1573513505
 GameObject:
   m_ObjectHideFlags: 0
@@ -18961,6 +18949,7 @@ GameObject:
   - component: {fileID: 1652810936}
   - component: {fileID: 1652810935}
   - component: {fileID: 1652810937}
+  - component: {fileID: 1652810938}
   m_Layer: 0
   m_Name: Beer_open
   m_TagString: Untagged
@@ -19036,6 +19025,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Liquid: {fileID: 0}
+--- !u!114 &1652810938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652810933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d5916422556ad488dbdc737b2ad002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Liquid: {fileID: 0}
+  Name: 
 --- !u!1 &1663144922
 GameObject:
   m_ObjectHideFlags: 0
