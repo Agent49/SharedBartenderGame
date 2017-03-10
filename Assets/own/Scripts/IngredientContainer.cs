@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class IngredientContainer : Container {
 
-	public string Name;
-	public decimal Volume;
+	private float timeStep = 0.5f;
+	private float initialTime;
 
 	// Use this for initialization
 	void Start () {
 		Initialize ();
 		Debug.Log (Name);
-		Debug.Log (maxVol);
+		Debug.Log (MaxVol);
 		Debug.Log (Volume);
 		Debug.Log (liquidColor);
 	}
@@ -24,6 +24,7 @@ public class IngredientContainer : Container {
 			else
 				SipOut ();
 		} else {
+			initialTime = 0.0f;
 			Particles.Stop ();
 		}
 	}
@@ -34,9 +35,12 @@ public class IngredientContainer : Container {
 		// Get data from stock
 		Ingredient ingredient = Stock.GetIngredient(Name);
 		// Assign initial and present volume
-		maxVol = Volume = ingredient.Volume;
+		MaxVol = Volume = ingredient.Volume;
 		// Assign liquid color
 		liquidColor = ingredient.lColor;
+
+		// Reset time
+		initialTime = 0.0f;
 
 		// Initialize Particle System
 		InitializeParticleSystem();
@@ -49,7 +53,15 @@ public class IngredientContainer : Container {
 	}
 
 	public void SipOut() {
-		Debug.Log ("SipOut()");
+		if (initialTime == 0)
+			initialTime = Time.time;
+		
+		if((Time.time - initialTime) >= timeStep) {
+			Debug.Log ("Sip");
+			initialTime = Time.time;
+		}
+
+//		Debug.Log ("SipOut()");
 
 		Particles.Play ();
 	}

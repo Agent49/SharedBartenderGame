@@ -1,0 +1,211 @@
+fileFormatVersion: 2
+guid: 09839995f06353a4dafcb5cc920d9f35
+timeCreated: 1489160334
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bier
+    100004: Bier_open
+    100006: Camera
+    100008: Cola
+    100010: Cola_open
+    100012: Gin
+    100014: Gin_open
+    100016: Grenadine
+    100018: Grenadine_open
+    100020: Lamp
+    100022: O-saft
+    100024: O-saft_open
+    100026: Rotwein
+    100028: Rotwein_open
+    100030: Rum
+    100032: Rum_open
+    100034: Sekt
+    100036: Sekt_open
+    100038: Tequila
+    100040: Tequila_open
+    100042: Weisswein
+    100044: Weisswein_open
+    100046: Whisky
+    100048: Whisky_open
+    100050: Wodka
+    100052: Wodka_open
+    100054: Zuckersirup
+    100056: Zuckersirup_open
+    400000: //RootNode
+    400002: Bier
+    400004: Bier_open
+    400006: Camera
+    400008: Cola
+    400010: Cola_open
+    400012: Gin
+    400014: Gin_open
+    400016: Grenadine
+    400018: Grenadine_open
+    400020: Lamp
+    400022: O-saft
+    400024: O-saft_open
+    400026: Rotwein
+    400028: Rotwein_open
+    400030: Rum
+    400032: Rum_open
+    400034: Sekt
+    400036: Sekt_open
+    400038: Tequila
+    400040: Tequila_open
+    400042: Weisswein
+    400044: Weisswein_open
+    400046: Whisky
+    400048: Whisky_open
+    400050: Wodka
+    400052: Wodka_open
+    400054: Zuckersirup
+    400056: Zuckersirup_open
+    2300000: Bier
+    2300002: Bier_open
+    2300004: Cola
+    2300006: Cola_open
+    2300008: Gin
+    2300010: Gin_open
+    2300012: Grenadine
+    2300014: Grenadine_open
+    2300016: O-saft
+    2300018: O-saft_open
+    2300020: Rotwein
+    2300022: Rotwein_open
+    2300024: Rum
+    2300026: Rum_open
+    2300028: Sekt
+    2300030: Sekt_open
+    2300032: Tequila
+    2300034: Tequila_open
+    2300036: Weisswein
+    2300038: Weisswein_open
+    2300040: Whisky
+    2300042: Whisky_open
+    2300044: Wodka
+    2300046: Wodka_open
+    2300048: Zuckersirup
+    2300050: Zuckersirup_open
+    3300000: Bier
+    3300002: Bier_open
+    3300004: Cola
+    3300006: Cola_open
+    3300008: Gin
+    3300010: Gin_open
+    3300012: Grenadine
+    3300014: Grenadine_open
+    3300016: O-saft
+    3300018: O-saft_open
+    3300020: Rotwein
+    3300022: Rotwein_open
+    3300024: Rum
+    3300026: Rum_open
+    3300028: Sekt
+    3300030: Sekt_open
+    3300032: Tequila
+    3300034: Tequila_open
+    3300036: Weisswein
+    3300038: Weisswein_open
+    3300040: Whisky
+    3300042: Whisky_open
+    3300044: Wodka
+    3300046: Wodka_open
+    3300048: Zuckersirup
+    3300050: Zuckersirup_open
+    4300000: Zuckersirup_open
+    4300002: Zuckersirup
+    4300004: Grenadine
+    4300006: Grenadine_open
+    4300008: Gin
+    4300010: Gin_open
+    4300012: Rum
+    4300014: Rum_open
+    4300016: Wodka
+    4300018: Wodka_open
+    4300020: Tequila_open
+    4300022: Tequila
+    4300024: O-saft_open
+    4300026: Bier_open
+    4300028: Bier
+    4300030: Cola
+    4300032: Cola_open
+    4300034: Sekt
+    4300036: Sekt_open
+    4300038: Rotwein
+    4300040: Rotwein_open
+    4300042: Weisswein
+    4300044: Weisswein_open
+    4300046: Whisky
+    4300048: Whisky_open
+    4300050: O-saft
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

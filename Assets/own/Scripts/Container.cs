@@ -4,7 +4,10 @@ using UnityEngine;
 
 public abstract class Container : MonoBehaviour {
 
-	public decimal maxVol;
+	public string Name;
+	public decimal MaxVol;
+	public decimal Volume;
+
 	protected Transform particleSource;
 	protected Color liquidColor;
 	protected RaycastHit hit;

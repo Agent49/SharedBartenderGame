@@ -2757,6 +2757,7 @@ GameObject:
   - component: {fileID: 368233172}
   - component: {fileID: 368233171}
   - component: {fileID: 368233170}
+  - component: {fileID: 368233175}
   m_Layer: 0
   m_Name: GlassBeer_001
   m_TagString: Equipment
@@ -2889,6 +2890,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 368233168}
   m_Mesh: {fileID: 4300040, guid: ccbaf0a56fd1af84e838e49bb6fa9e19, type: 3}
+--- !u!114 &368233175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 368233168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d081e4454a25494a92f31678c3e4684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Particles: {fileID: 0}
 --- !u!1 &376015787
 GameObject:
   m_ObjectHideFlags: 0
@@ -7847,7 +7861,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 944798461
+  randomSeed: 1622172099
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16323,7 +16337,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1387785442}
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09941297, y: -0.01550408, z: 1.0162773}
+  m_LocalPosition: {x: 0, y: -0, z: 0.706}
   m_LocalScale: {x: 0.0725537, y: 0.07283941, z: 0.9981984}
   m_Children: []
   m_Father: {fileID: 1652810934}
@@ -16434,7 +16448,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 875063745
+  randomSeed: 2071180717
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -21259,6 +21273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d5916422556ad488dbdc737b2ad002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
   Particles: {fileID: 0}
   Name: 
 --- !u!1 &1573513505
@@ -21655,6 +21670,34 @@ Transform:
   m_Father: {fileID: 1110628205}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1637282968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1637282969}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1637282969
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1637282968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.395607, y: 7.640566, z: 22.306297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1652810933
 GameObject:
   m_ObjectHideFlags: 0
@@ -21755,6 +21798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d5916422556ad488dbdc737b2ad002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
   Particles: {fileID: 0}
   Name: 
 --- !u!65 &1652810939

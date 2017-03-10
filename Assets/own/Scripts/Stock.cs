@@ -15,10 +15,15 @@ public static class Stock {
 		{"GlassBeer", 500.0m }
 	};
 
-	private static string[] stockListKeys = stockIngredients.Keys.ToArray ();
+	private static string[] stockIngredientsKeys = stockIngredients.Keys.ToArray ();
+	private static string[] stockDrinkContainerKeys = stockIngredients.Keys.ToArray ();
 
 	public static Ingredient GetIngredient(string name) {
 		return stockIngredients [name];
+	}
+
+	public static decimal GetDrinkContainer(string name) {
+		return stockDrinkContainer [name];
 	}
 
 	public static bool IsStock(string name) {
