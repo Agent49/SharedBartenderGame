@@ -188,7 +188,7 @@ public class PersonContoller : MonoBehaviour {
 				FillIn ();
 			} else {
 				Quaternion targetRot = Quaternion.LookRotation (Vector3.up.normalized);
-				rightItem.transform.rotation = Quaternion.Slerp (rightItem.transform.rotation, targetRot, Time.deltaTime * 5.0f);
+				rightItem.transform.rotation = Quaternion.Slerp (rightItem.transform.rotation, targetRot, Time.deltaTime * 0.2f);
 			}
 		}
 	}
@@ -206,7 +206,10 @@ public class PersonContoller : MonoBehaviour {
 		} 
 		else if(Input.GetKey(KeyCode.E)) 
 		{
-			rightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);			
+			Quaternion targetRot = Quaternion.LookRotation (Vector3.down);
+			rightItem.transform.rotation = Quaternion.Slerp (rightItem.transform.rotation, targetRot, Time.deltaTime * 0.5f);
+			Debug.Log (rightItem.transform.eulerAngles);
+//			rightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);			
 		}
 	}
 

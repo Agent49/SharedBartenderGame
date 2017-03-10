@@ -57,7 +57,7 @@ public class IngredientContainer : Container {
 			initialTime = Time.time;
 		
 		if((Time.time - initialTime) >= timeStep) {
-			Debug.Log ("Sip");
+//			Debug.Log ("Sip");
 			initialTime = Time.time;
 		}
 
