@@ -9,7 +9,7 @@ public abstract class Container : MonoBehaviour {
 	protected Color liquidColor;
 	protected RaycastHit hit;
 
-	public ParticleSystem Liquid;
+	public ParticleSystem Particles;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +21,20 @@ public abstract class Container : MonoBehaviour {
 	}
 
 	protected void InitializeParticleSystem() {
-		if (transform.childCount == 1)
+		if (transform.childCount == 1) {
 			particleSource = gameObject.transform.GetChild (0);
-		else
+			Particles = particleSource.GetComponent<ParticleSystem> ();
+			if (liquidColor != null){
+				// Overwriting Particles.main is not permitted
+				var particlesMain = Particles.main;
+				particlesMain.startColor = liquidColor;
+			}
+			else{
+				Debug.LogError ("No Color was set.");
+			}
+		} else {
 			Debug.LogError ("Failed InitializeParticleSystem(): There must be exactly 1 child.");
+		}
 	}
 
 	protected abstract void Initialize ();

@@ -20,9 +20,11 @@ public class IngredientContainer : Container {
 	void Update () {
 		if (transform.rotation.eulerAngles.x < 90) {
 			if (Input.GetMouseButtonDown (2))
-				SipOut ();
-			else
 				FlowOut ();
+			else
+				SipOut ();
+		} else {
+			Particles.Stop ();
 		}
 	}
 
@@ -42,9 +44,13 @@ public class IngredientContainer : Container {
 
 	public override void FlowOut() {
 		Debug.Log ("FlowOut()");
+
+		Particles.Play ();
 	}
 
 	public void SipOut() {
 		Debug.Log ("SipOut()");
+
+		Particles.Play ();
 	}
 }
