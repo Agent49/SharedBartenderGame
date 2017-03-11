@@ -13,7 +13,8 @@ public class DrinkContainer : Container {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown ("x"))
+			Debug.Log ("X pressed.");
 	}
 
 	protected override void Initialize() {
@@ -36,6 +37,7 @@ public class DrinkContainer : Container {
 			DrinkIngredients.Add (ingredientName, volume);
 		
 		Volume += volume;
+		Debug.Log ("DrinkContainer volume: " + Volume);
 		return volume;
 	}
 

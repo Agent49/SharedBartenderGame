@@ -11,6 +11,7 @@ public abstract class Container : MonoBehaviour {
 	protected Transform particleSource;
 	protected Color liquidColor;
 	protected RaycastHit hit;
+	protected float range = 20f;
 
 	public ParticleSystem Particles;
 

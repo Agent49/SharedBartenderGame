@@ -6,6 +6,7 @@ public class IngredientContainer : Container {
 
 	private float timeStep = 0.5f;
 	private float initialTime;
+	private decimal sip = 10.0m;
 
 	// Use this for initialization
 	void Start () {
@@ -53,16 +54,23 @@ public class IngredientContainer : Container {
 	}
 
 	public void SipOut() {
-		if (initialTime == 0)
-			initialTime = Time.time;
-		
-		if((Time.time - initialTime) >= timeStep) {
-//			Debug.Log ("Sip");
-			initialTime = Time.time;
+
+		if (Physics.Raycast(particleSource.transform.position, Vector3.down, out hit, range)) {
+			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
+
+			// If hit object is a DrinkContainer (has sript attached)
+			if (drinkContainer != null) {
+
+				if (initialTime == 0)
+					initialTime = Time.time;
+
+				if((Time.time - initialTime) >= timeStep) {
+					initialTime = Time.time;
+
+					drinkContainer.fillIn (Name, sip);
+				}
+			}
 		}
-
-//		Debug.Log ("SipOut()");
-
 		Particles.Play ();
 	}
 }

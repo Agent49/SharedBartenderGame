@@ -146,6 +146,7 @@ public class PersonContoller : MonoBehaviour {
 			isPickedUpRight = true;
 			rightItem = hit.transform;
 			rightItem.gameObject.GetComponent<Rigidbody> ().useGravity = false;
+			rightItem.gameObject.GetComponent<BoxCollider> ().enabled = false;
 		} 
 	}
 
@@ -162,6 +163,7 @@ public class PersonContoller : MonoBehaviour {
 		else if(Input.GetButtonDown ("Fire2") && isPickedUpRight) {
 			isPickedUpRight = false;
 			rightItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			rightItem.gameObject.GetComponent<BoxCollider> ().enabled = true;
 			rightItem = null;
 			justDropped = true;
 		}
@@ -208,8 +210,6 @@ public class PersonContoller : MonoBehaviour {
 		{
 			Quaternion targetRot = Quaternion.LookRotation (Vector3.down);
 			rightItem.transform.rotation = Quaternion.Slerp (rightItem.transform.rotation, targetRot, Time.deltaTime * 0.5f);
-			Debug.Log (rightItem.transform.eulerAngles);
-//			rightItem.Rotate(Vector3.up * Time.deltaTime * 50.0f);			
 		}
 	}
 
