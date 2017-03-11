@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DrinkContainer : Container {
 	
-	public Dictionary<string, decimal> DrinkIngredients = new Dictionary<string, decimal> ();
+	public Dictionary<string, decimal> Ingredients = new Dictionary<string, decimal> ();
+	public Dictionary<string, int> Sugar = new Dictionary<string, int> ();
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +24,7 @@ public class DrinkContainer : Container {
 		// Assign maxVolume
 		MaxVol = Stock.GetDrinkContainer(Name);
 		Volume = 0.0m;
-		// Remmber where object was initialized to respawn it
+		// Remember where object was initialized to respawn it
 		spawnPosition = transform.position;
 	}
 
@@ -37,10 +38,10 @@ public class DrinkContainer : Container {
 
 		decimal tmp;
 
-		if (DrinkIngredients.TryGetValue (ingredientName, out tmp))
-			DrinkIngredients [ingredientName] += volume;
+		if (Ingredients.TryGetValue (ingredientName, out tmp))
+			Ingredients [ingredientName] += volume;
 		else
-			DrinkIngredients.Add (ingredientName, volume);
+			Ingredients.Add (ingredientName, volume);
 		
 		Volume += volume;
 		debugContainer ();
@@ -58,19 +59,34 @@ public class DrinkContainer : Container {
 		decimal tmp;
 		decimal volume = MaxVol - Volume;
 
-		if (DrinkIngredients.TryGetValue (ingredientName, out tmp))
-			DrinkIngredients [ingredientName] += volume;
+		if (Ingredients.TryGetValue (ingredientName, out tmp))
+			Ingredients [ingredientName] += volume;
 		else
-			DrinkIngredients.Add (ingredientName, volume);
+			Ingredients.Add (ingredientName, volume);
 
 		Volume += volume;
 		debugContainer ();
 		return volume;
 	}
 
+	public int GiveMeSugarBaby(string sugarName) {
+		int sugarNum = 1;
+
+		if (Sugar.TryGetValue (sugarName, out sugarNum))
+			Sugar [sugarName] += 1;
+		else
+			Sugar.Add (sugarName, 1);
+		
+		debugContainer ();
+		return sugarNum;
+	}
+
 	private void debugContainer() {
 		string debug = "Volume: " + Volume + "\n";
-		foreach(KeyValuePair<string, decimal> entry in DrinkIngredients) {
+		foreach(KeyValuePair<string, decimal> entry in Ingredients) {
+			debug += entry.Key + " : " + entry.Value + "\n";
+		}
+		foreach(KeyValuePair<string, int> entry in Sugar) {
 			debug += entry.Key + " : " + entry.Value + "\n";
 		}
 		GameMaster.DebugOut (debug);

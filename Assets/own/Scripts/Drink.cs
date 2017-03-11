@@ -18,6 +18,7 @@ public class Drink : MonoBehaviour {
 	public string Name;
 	public decimal Price;
 	public Dictionary<string, decimal> Ingredients;
+	public Dictionary<string, int> Sugar;
 
 	// Basic ingredients like "Cola" or "Beer" always have value >=100
 	private static Dictionary<string, Dictionary<string, decimal>> drinkList = new Dictionary<string, Dictionary<string, decimal>>() {
@@ -29,9 +30,10 @@ public class Drink : MonoBehaviour {
 	};
 
 	// How much % alcohol does an ingredient contain?
-	private static Dictionary<string, int> Ingredient = new Dictionary<string, int> {
-		{"Cola", 0}, {"Orange", 0}, {"Pineapple", 0}, {"Grenadine", 0}, {"Beer", 5}, {"Lemon", 0}, {"Schnapps", 40}
-	};
+//	private static Dictionary<string, int> Ingredient = new Dictionary<string, int> {
+//		{"Cola", 0}, {"Orange", 0}, {"Pineapple", 0}, {"Grenadine", 0}, {"Beer", 5}, {"Lemon", 0}, {"Schnapps", 40}
+//	};
+
 
 	/*
 	 * Contruct drink with all its ingredients by name
@@ -60,6 +62,7 @@ public class Drink : MonoBehaviour {
 			break;
 		case "Cola":
 			Price = 2;
+			Sugar = new Dictionary<string, int> () { { "lemon", 1 } };
 			break;
 		case "Diesel":
 			Price = 2.5m;

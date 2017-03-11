@@ -56,10 +56,10 @@ public class Sugar : MonoBehaviour {
 			return false;
 		
 		// If Collider still is disabled then last thing happend is falling into a glas
-
 		foreach(Transform child in drinkContainer.gameObject.transform) {
 			if (Name.Equals (rgx.Split (child.name) [0])) {
 				child.gameObject.SetActive (true);
+				drinkContainer.GiveMeSugarBaby (Name);
 			}				
 		}
 
