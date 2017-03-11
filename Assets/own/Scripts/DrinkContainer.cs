@@ -29,19 +29,52 @@ public class DrinkContainer : Container {
 		
 	}
 
+	/*
+	 * Add a sip of 1cl to the DrinkIngredients
+	 */
 	public decimal fillIn(string ingredientName, decimal volume) {
+		
+		if (Volume >= MaxVol)
+			return 0.0m;
+
 		decimal tmp;
+
 		if (DrinkIngredients.TryGetValue (ingredientName, out tmp))
 			DrinkIngredients [ingredientName] += volume;
 		else
 			DrinkIngredients.Add (ingredientName, volume);
 		
 		Volume += volume;
-		Debug.Log ("DrinkContainer volume: " + Volume);
+		debugContainer ();
 		return volume;
 	}
 
+	/*
+	 * Fill DrinkContainer up to it's maximum volume
+	 */
 	public decimal fillUp(string ingredientName) {
-		return 0.0m;
+		
+		if (Volume >= MaxVol)
+			return 0.0m;
+		
+		decimal tmp;
+		decimal volume = MaxVol - Volume;
+
+		if (DrinkIngredients.TryGetValue (ingredientName, out tmp))
+			DrinkIngredients [ingredientName] += volume;
+		else
+			DrinkIngredients.Add (ingredientName, volume);
+
+		Volume += volume;
+		debugContainer ();
+		return volume;
+	}
+
+	private void debugContainer() {
+		string debug = "Volume: " + Volume + "\n";
+		foreach(KeyValuePair<string, decimal> entry in DrinkIngredients) {
+			debug += entry.Key + " : " + entry.Value + "\n";
+		}
+		GameMaster.DebugOut (debug);
 	}
 }

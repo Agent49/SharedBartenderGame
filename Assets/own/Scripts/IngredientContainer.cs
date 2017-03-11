@@ -20,10 +20,7 @@ public class IngredientContainer : Container {
 	// Update is called once per frame
 	void Update () {
 		if (transform.rotation.eulerAngles.x < 90) {
-			if (Input.GetMouseButtonDown (2))
-				FlowOut ();
-			else
-				SipOut ();
+			FlowOut ();
 		} else {
 			initialTime = 0.0f;
 			Particles.Stop ();
@@ -48,8 +45,25 @@ public class IngredientContainer : Container {
 	}
 
 	public override void FlowOut() {
-		Debug.Log ("FlowOut()");
 
+		if (Physics.Raycast(particleSource.transform.position, Vector3.down, out hit, range)) {
+			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
+
+			// If hit object is a DrinkContainer (has sript attached)
+			if (drinkContainer != null) {
+
+				if (initialTime == 0)
+					initialTime = Time.time;
+
+				if (Input.GetMouseButton (2) && ((Time.time - initialTime) >= (timeStep))) {
+					initialTime = Time.time;
+					drinkContainer.fillUp (Name);
+				} else if((Time.time - initialTime) >= timeStep) {
+					initialTime = Time.time;
+					drinkContainer.fillIn (Name, sip);
+				}
+			}
+		}
 		Particles.Play ();
 	}
 
