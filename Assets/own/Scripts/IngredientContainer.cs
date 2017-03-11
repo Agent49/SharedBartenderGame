@@ -11,10 +11,6 @@ public class IngredientContainer : Container {
 	// Use this for initialization
 	void Start () {
 		Initialize ();
-		Debug.Log (Name);
-		Debug.Log (MaxVol);
-		Debug.Log (Volume);
-		Debug.Log (liquidColor);
 	}
 	
 	// Update is called once per frame
@@ -40,11 +36,14 @@ public class IngredientContainer : Container {
 		// Reset time
 		initialTime = 0.0f;
 
+		// Remember where object was initialized to respawn it
+		spawnPosition = transform.position;
+
 		// Initialize Particle System
 		InitializeParticleSystem();
 	}
 
-	public override void FlowOut() {
+	public void FlowOut() {
 
 		if (Physics.Raycast(particleSource.transform.position, Vector3.down, out hit, range)) {
 			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
@@ -60,27 +59,6 @@ public class IngredientContainer : Container {
 					drinkContainer.fillUp (Name);
 				} else if((Time.time - initialTime) >= timeStep) {
 					initialTime = Time.time;
-					drinkContainer.fillIn (Name, sip);
-				}
-			}
-		}
-		Particles.Play ();
-	}
-
-	public void SipOut() {
-
-		if (Physics.Raycast(particleSource.transform.position, Vector3.down, out hit, range)) {
-			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
-
-			// If hit object is a DrinkContainer (has sript attached)
-			if (drinkContainer != null) {
-
-				if (initialTime == 0)
-					initialTime = Time.time;
-
-				if((Time.time - initialTime) >= timeStep) {
-					initialTime = Time.time;
-
 					drinkContainer.fillIn (Name, sip);
 				}
 			}

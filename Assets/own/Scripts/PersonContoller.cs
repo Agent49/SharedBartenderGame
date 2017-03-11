@@ -113,13 +113,14 @@ public class PersonContoller : MonoBehaviour {
 	 * Raycast hits Equipment
 	 */
 	private void InteractEquipment() {
-		// If nothing in Inventory or other Equipment, pickup this!
-		if (Inventory == null || Inventory.IsChildOf (equipment))
-			// pickupItem ();
-
-		// If Ingredient in Inventory, mix it!
-		if(Inventory.IsChildOf(GameMaster.Ingredients)) 
-			hit.transform.SendMessage ("AddIngredient", Inventory);
+		PickupItem ();
+//		// If nothing in Inventory or other Equipment, pickup this!
+//		if (Inventory == null || Inventory.IsChildOf (equipment))
+//			// pickupItem ();
+//
+//		// If Ingredient in Inventory, mix it!
+//		if(Inventory.IsChildOf(GameMaster.Ingredients)) 
+//			hit.transform.SendMessage ("AddIngredient", Inventory);
 	}
 
 	/*

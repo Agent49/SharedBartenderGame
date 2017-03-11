@@ -13,16 +13,10 @@ public abstract class Container : MonoBehaviour {
 	protected RaycastHit hit;
 	protected float range = 20f;
 
-	public ParticleSystem Particles;
+	protected Vector3 spawnPosition;
+	protected float spawnTime = 5f;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public ParticleSystem Particles;
 
 	protected void InitializeParticleSystem() {
 		if (transform.childCount == 1) {
@@ -41,7 +35,15 @@ public abstract class Container : MonoBehaviour {
 		}
 	}
 
-	protected abstract void Initialize ();
+	public void ReSpawn() {
+		StartCoroutine (DelayedRespawn ());
+	}
 
-	public abstract void FlowOut ();
+	IEnumerator DelayedRespawn() {
+		yield return new WaitForSeconds(5);
+		transform.position = spawnPosition;
+		Initialize ();
+	}
+
+	protected abstract void Initialize ();
 }

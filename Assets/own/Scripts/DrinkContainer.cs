@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DrinkContainer : Container {
-
+	
 	public Dictionary<string, decimal> DrinkIngredients = new Dictionary<string, decimal> ();
 
 	// Use this for initialization
@@ -23,10 +23,8 @@ public class DrinkContainer : Container {
 		// Assign maxVolume
 		MaxVol = Stock.GetDrinkContainer(Name);
 		Volume = 0.0m;
-	}
-
-	public override void FlowOut() {
-		
+		// Remmber where object was initialized to respawn it
+		spawnPosition = transform.position;
 	}
 
 	/*
