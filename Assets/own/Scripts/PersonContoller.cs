@@ -21,6 +21,7 @@ public class PersonContoller : MonoBehaviour {
 	private Transform ingredients;
 	private Transform equipment;
 	private Transform clients;
+	private Transform sugar;
 
 	/*
 	 * Initialize often used members once which were declared above
@@ -34,6 +35,7 @@ public class PersonContoller : MonoBehaviour {
 		ingredients = GameObject.Find ("Ingredients").transform;
 		equipment = GameObject.Find ("Equipment").transform;
 		clients = GameObject.Find ("Clients").transform;
+		sugar = GameObject.Find ("Sugar").transform;
 	}
 
 	/*
@@ -96,6 +98,12 @@ public class PersonContoller : MonoBehaviour {
 		if (hit.transform.IsChildOf (clients)) {
 			InteractClient ();
 		}
+
+		if (hit.transform.IsChildOf (sugar)) {
+			InteractSugar ();
+		}
+
+
 		// Empty Equipment if it hits the sink
 		if(hit.transform.gameObject.name.Equals("Sink")) {
 			EmptyEquipment ();
@@ -106,6 +114,13 @@ public class PersonContoller : MonoBehaviour {
 	 * Ingredients are to pickup, mix and so on
 	 */
 	private void InteractIngredient() {
+		PickupItem ();
+	}
+
+	/*
+	 * Ingredients are to pickup, mix and so on
+	 */
+	private void InteractSugar() {
 		PickupItem ();
 	}
 
