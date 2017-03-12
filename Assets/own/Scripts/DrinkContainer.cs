@@ -81,7 +81,7 @@ public class DrinkContainer : Container {
 		return sugarNum;
 	}
 
-	private void debugContainer() {
+	public void debugContainer() {
 		string debug = "Volume: " + Volume + "\n";
 		foreach(KeyValuePair<string, decimal> entry in Ingredients) {
 			debug += entry.Key + " : " + entry.Value + "\n";

@@ -14,9 +14,10 @@ using System.Linq;
  */
 
 public class Drink : MonoBehaviour {
-
+	
 	public string Name;
 	public decimal Price;
+	public decimal Volume;
 	public Dictionary<string, decimal> Ingredients;
 	public Dictionary<string, int> Sugar;
 
@@ -35,12 +36,19 @@ public class Drink : MonoBehaviour {
 //	};
 
 
+	public Drink(DrinkContainer drinkContainer) {
+		Ingredients = drinkContainer.Ingredients;
+		Sugar = drinkContainer.Sugar;
+		DetermineVolume ();
+	}
+
 	/*
 	 * Contruct drink with all its ingredients by name
 	 */
 	public Drink(string name) {
 		Name = name;
-		SetDrink ();
+		SetDrinkByName ();
+		DetermineVolume ();
 	}
 
 	/*
@@ -54,7 +62,7 @@ public class Drink : MonoBehaviour {
 	 * Set properties of a drink like ingredients and price
 	 */
 	// TODO: Read everything from xml... better data structure
-	private void SetDrink() {
+	private void SetDrinkByName() {
 		Ingredients = drinkList [Name];
 		switch(Name) {
 		case "Beer":
@@ -73,6 +81,13 @@ public class Drink : MonoBehaviour {
 		case "Sex on the Beach":
 			Price = 6.5m;
 			break;
+		}
+	}
+
+	private void DetermineVolume() {
+		Volume = 0m;
+		foreach(KeyValuePair<string, decimal> entry in Ingredients) {
+			Volume += entry.Value;
 		}
 	}
 }

@@ -5,21 +5,30 @@ using UnityEngine;
 public class RespawnTrigger : MonoBehaviour {
 
 	public bool OnTriggerEnter(Collider other){
+		float spawnTime;
+
+		if (gameObject.name.Equals ("Tray"))
+			spawnTime = transform.parent.gameObject.GetComponent<Client> ().GetDrink (other);
+		else
+			spawnTime = 5f;
+			
+
 		IngredientContainer ingredientContainer = other.GetComponent<IngredientContainer> ();
 		if (ingredientContainer != null) {
-			ingredientContainer.ReSpawn (5f);
+			ingredientContainer.ReSpawn (spawnTime);
 			return true;
 		}
 			
 		DrinkContainer drinkContainer = other.GetComponent<DrinkContainer> ();
 		if(drinkContainer != null) {
-			drinkContainer.ReSpawn (5f);
+			drinkContainer.ReSpawn (spawnTime);
 			return true;			
 		}
 
 		Sugar sugar = other.GetComponent<Sugar> ();
 		if(sugar != null) {
-			sugar.ReSpawn (5f);
+			sugar.ReSpawn (spawnTime);
+			return true;
 		}
 
 		return false;
