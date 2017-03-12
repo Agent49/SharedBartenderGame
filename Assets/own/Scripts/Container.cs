@@ -14,7 +14,6 @@ public abstract class Container : MonoBehaviour {
 	protected float range = 20f;
 
 	protected Vector3 spawnPosition;
-	protected float spawnTime = 5f;
 
 	public ParticleSystem Particles;
 
@@ -35,12 +34,13 @@ public abstract class Container : MonoBehaviour {
 		}
 	}
 
-	public void ReSpawn() {
-		StartCoroutine (DelayedRespawn ());
+	public void ReSpawn(float spawnTime) {
+		StartCoroutine (DelayedRespawn (spawnTime));
 	}
 
-	IEnumerator DelayedRespawn() {
-		yield return new WaitForSeconds(5);
+	IEnumerator DelayedRespawn(float spawnTime) {
+		yield return new WaitForSeconds(spawnTime);
+		transform.rotation = Quaternion.LookRotation (Vector3.up);
 		transform.position = spawnPosition;
 		Initialize ();
 	}

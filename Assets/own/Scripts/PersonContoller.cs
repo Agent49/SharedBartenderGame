@@ -180,7 +180,7 @@ public class PersonContoller : MonoBehaviour {
 		else if(Input.GetButtonDown ("Fire2") && isPickedUpRight) {
 
 			// Giving it a client new position is tray center
-			if (hit.transform.IsChildOf (clients))
+			if (Physics.Raycast(transform.position, transform.forward, out hit, range) && hit.transform.IsChildOf (clients))
 				rightItem.position = hit.transform.GetChild (0).position + new Vector3(0f, 0.05f, 0f);
 			
 			isPickedUpRight = false;

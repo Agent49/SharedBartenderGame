@@ -63,13 +63,19 @@ public class Sugar : MonoBehaviour {
 			}				
 		}
 
-		ReSpawn();
+		ReSpawn(0.1f);
 
 		return true;
 	}
+		
+	public void ReSpawn(float spawnTime) {
+		StartCoroutine (DelayedRespawn (spawnTime));
+	}
 
-	private void ReSpawn() {
-		transform.position = spawnPosition;
+	IEnumerator DelayedRespawn(float spawnTime) {
+		yield return new WaitForSeconds(spawnTime);
 		transform.gameObject.GetComponent<BoxCollider> ().enabled = true;
+		transform.rotation = Quaternion.LookRotation (Vector3.up);
+		transform.position = spawnPosition;
 	}
 }
