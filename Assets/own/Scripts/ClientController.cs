@@ -28,7 +28,7 @@ public class ClientController : MonoBehaviour {
 	 */
 	private void GenerateRequest() {
 		Request = new Request ();
-		Ui.ReceiveChat (name + ": I would like to have a " + Request.Drink.Name + "\n");
+//		Ui.ReceiveChat (name + ": I would like to have a " + Request.RequestedDrink.Name + "\n");
 	}
 		
 	/* 
@@ -71,7 +71,7 @@ public class ClientController : MonoBehaviour {
 	 */
 	private void GiveMoney() {
 		Request.CalculateTip (Character.Generousness[drunkenness]);
-		int money = (int)Mathf.Round ((float)Request.Drink.Price + Request.Tip);
+		int money = (int)Mathf.Round ((float)Request.RequestedDrink.Price + Request.Tip);
 		Ui.ReceiveMoney (money);
 		Ui.ReceiveChat(name + ": Thank you, sir! :)\n");		
 	}

@@ -5,11 +5,10 @@ using UnityEngine;
 public class Client : MonoBehaviour {
 
 	private Request request;
-	private Drink receivedDrink;
 
 	// Use this for initialization
 	void Start () {
-		Request = new Request ();
+		request = new Request ();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +26,7 @@ public class Client : MonoBehaviour {
 	}
 
 	private float TakeDrink(DrinkContainer drinkContainer) {
-		receivedDrink = new Drink (drinkContainer);
+		request.Receive (drinkContainer);
 		return 10f;
 	}
 

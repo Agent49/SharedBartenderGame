@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Request : MonoBehaviour {
 
-	public Drink Drink;
+	public Drink RequestedDrink;
+	public Drink ReceivedDrink;
 	public bool Match;
 	public int Rate;
 	public float InitialTime;
@@ -17,9 +18,14 @@ public class Request : MonoBehaviour {
 		// 1.) Get a drinklist
 		string[] drinkList = Drink.GetDrinkList ();
 		// 2.) Choose one drink randomly
-		Drink = new Drink(drinkList[Random.Range(0, drinkList.Length)]);
+		RequestedDrink = new Drink(drinkList[Random.Range(0, drinkList.Length)]);
 		// 3.) Time to evaluate duration
 		InitialTime = Time.time;
+	}
+
+	public void Receive(DrinkContainer drinkContainer) {
+		ReceivedDrink = new Drink (drinkContainer);
+		Debug.Log (drinkContainer.Ingredients);
 	}
 
 	/*
@@ -35,13 +41,13 @@ public class Request : MonoBehaviour {
 		Rate = 0;
 
 		// If list of ingredients missmatches
-		if (Mix.Count != Drink.Ingredients.Count) {
+		if (Mix.Count != RequestedDrink.Ingredients.Count) {
 			Match = false;
 			return 0;
 		}
 
 		// Iterate over targetDrink
-		foreach(var item in Drink.Ingredients) {
+		foreach(var item in RequestedDrink.Ingredients) {
 			decimal amount;
 			// If ingredient is in Shaker
 			if (Mix.TryGetValue (item.Key, out amount)) {
@@ -66,7 +72,7 @@ public class Request : MonoBehaviour {
 	 */
 	public int CalculateTip(float generousness) {
 		Tip = 0;
-		int complexity = Drink.Ingredients.Count;
+		int complexity = RequestedDrink.Ingredients.Count;
 		// Is the Client willing to give a tip?
 		float kRandom = Random.Range (0.0f, 1.0f) * generousness;
 		// How much time has passed?
@@ -75,7 +81,7 @@ public class Request : MonoBehaviour {
 		float maxTime = 10f + Mathf.Pow ((float)complexity, 2.0f);
 
 		if (true || (kRandom > 0.5f) && (duration < maxTime)) {
-			Tip = (int)Mathf.Round ((float)Drink.Price * Rate * 0.3f);
+			Tip = (int)Mathf.Round ((float)RequestedDrink.Price * Rate * 0.3f);
 		}
 
 		Debug.Log ("Tip: " + Tip);
