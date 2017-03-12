@@ -142,12 +142,13 @@ public class PersonContoller : MonoBehaviour {
 	 * Raycast hits Client
 	 */
 	private void InteractClient() {
-		if (Inventory != null) {
-			hit.transform.SendMessage ("GetDrink", Inventory);
-		}
-		else {
-			hit.transform.SendMessage ("SmallTalk");			
-		}
+		
+//		if (Inventory != null) {
+//			hit.transform.SendMessage ("GetDrink", Inventory);
+//		}
+//		else {
+//			hit.transform.SendMessage ("SmallTalk");			
+//		}
 	}
 
 	/*
@@ -177,6 +178,11 @@ public class PersonContoller : MonoBehaviour {
 			justDropped = true;
 		}
 		else if(Input.GetButtonDown ("Fire2") && isPickedUpRight) {
+
+			// Giving it a client new position is tray center
+			if (hit.transform.IsChildOf (clients))
+				rightItem.position = hit.transform.GetChild (0).position + new Vector3(0f, 0.05f, 0f);
+			
 			isPickedUpRight = false;
 			rightItem.gameObject.GetComponent<Rigidbody> ().useGravity = true;
 			rightItem.gameObject.GetComponent<BoxCollider> ().enabled = true;

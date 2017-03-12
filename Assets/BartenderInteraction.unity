@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 86226905}
   - component: {fileID: 86226906}
   m_Layer: 0
-  m_Name: Tray_Bastian
+  m_Name: Tray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5466,9 +5466,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 582675523}
+  - component: {fileID: 582675524}
   m_Layer: 0
   m_Name: Egon
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5490,6 +5491,18 @@ Transform:
   m_Father: {fileID: 2075596257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &582675524
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 582675522}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -0.2, y: 0.5, z: 0.5}
 --- !u!1 &588865032
 GameObject:
   m_ObjectHideFlags: 0
@@ -7122,7 +7135,7 @@ GameObject:
   - component: {fileID: 702040897}
   m_Layer: 0
   m_Name: Bastian
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11145,7 +11158,7 @@ GameObject:
   - component: {fileID: 817195548}
   m_Layer: 0
   m_Name: Klaus
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12177,7 +12190,7 @@ GameObject:
   - component: {fileID: 936007237}
   - component: {fileID: 936007238}
   m_Layer: 0
-  m_Name: Tray_Egon
+  m_Name: Tray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
