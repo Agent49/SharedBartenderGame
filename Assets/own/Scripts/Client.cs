@@ -54,6 +54,7 @@ public class Client : MonoBehaviour {
 		float delay = (float)request.ReceivedDrink.Volume * 0.02f;
 		Debug.Log ("TakeDrink");
 		Chat (character.Say (request.FeedBack), true);
+		GiveMoney ();
 		OrderDrink (delay);
 		return 10f;
 	}
@@ -62,5 +63,9 @@ public class Client : MonoBehaviour {
 		Debug.Log ("DenyDrink");
 		Chat (character.Say (request.FeedBack), true);
 		return 5f;
+	}
+
+	private void GiveMoney() {
+		GameMaster.MakeCash (request.RequestedDrink.Price);
 	}
 }

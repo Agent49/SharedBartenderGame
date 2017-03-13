@@ -19775,7 +19775,7 @@ GameObject:
   - component: {fileID: 1380464153}
   - component: {fileID: 1380464152}
   m_Layer: 0
-  m_Name: Money Text Kasse
+  m_Name: TillText
   m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

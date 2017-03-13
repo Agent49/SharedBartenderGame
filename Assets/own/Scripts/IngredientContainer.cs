@@ -25,7 +25,7 @@ public class IngredientContainer : Container {
 
 	protected override void Initialize() {
 		// Derive Ingredient from gameObject name
-		Name = transform.name.Split ('_')[0];
+		Name = rgx.Split(transform.name)[0];
 		// Get data from stock
 		Ingredient ingredient = Stock.GetIngredient(Name);
 		// Assign initial and present volume
