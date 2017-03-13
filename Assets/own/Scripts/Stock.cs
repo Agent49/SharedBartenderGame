@@ -15,10 +15,13 @@ public static class Stock {
 
 	private static Dictionary<string, decimal> stockDrinkContainer = new Dictionary<string, decimal>() {
 		{"GlassBeer", 500.0m },
+		{"GlassCocktail", 400.0m },
 		{"GlassLongdrink", 350.0m },
 		{"GlassRedWine", 250.0m },
 		{"GlassWhiteWine", 200.0m },
-		{"GlassSparklingWine", 150.0m }
+		{"GlassSparklingWine", 150.0m },
+		{"GlassDoubleShot", 40.0m },
+		{"GlassDouble", 20.0m }
 	};
 
 	private static string[] stockIngredientsKeys = stockIngredients.Keys.ToArray ();
