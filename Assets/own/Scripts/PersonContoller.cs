@@ -86,22 +86,24 @@ public class PersonContoller : MonoBehaviour {
 	 */
 	void Interact() {
 		// If click on ingredient always replace inventory with it
-		if (hit.transform.IsChildOf (GameMaster.Ingredients)) {
-			InteractIngredient();
-		}
+//		if (hit.transform.IsChildOf (GameMaster.Ingredients)) {
+//			InteractIngredient();
+//		}
 
 		// If hit Equipment
-		if (hit.transform.IsChildOf (equipment)) {
-			InteractEquipment ();
-		}
+//		if (hit.transform.IsChildOf (equipment)) {
+//			InteractEquipment ();
+//		}
 
 		if (hit.transform.IsChildOf (clients)) {
 			InteractClient ();
+		} else {
+			PickupItem ();
 		}
 
-		if (hit.transform.IsChildOf (sugar)) {
-			InteractSugar ();
-		}
+//		if (hit.transform.IsChildOf (sugar)) {
+//			InteractSugar ();
+//		}
 
 
 		// Empty Equipment if it hits the sink

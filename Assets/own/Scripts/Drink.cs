@@ -23,11 +23,11 @@ public class Drink : MonoBehaviour {
 
 	// Basic ingredients like "Cola" or "Beer" always have value >=100
 	private static Dictionary<string, Dictionary<string, decimal>> drinkList = new Dictionary<string, Dictionary<string, decimal>>() {
-		{"Beer", new Dictionary<string, decimal> {{"Beer", 200.0m}}},
-		{"Cola", new Dictionary<string, decimal> {{"Cola", 200.0m}}},
-		{"Diesel", new Dictionary<string, decimal> {{"Beer", 100.0m}, {"Cola", 100.0m}}},
-		{"Cuba Libre", new Dictionary<string, decimal> {{"Cola", 100.0m}, {"Schnapps", 60.0m}, {"Lemon", 0.5m}}},
-		{"Sex on the Beach", new Dictionary<string, decimal> { {"Schnapps", 40.0m}, {"Orange", 40.0m}, {"Pineapple", 20.0m}, {"Grenadine", 10.0m}}}
+		{"Beer", new Dictionary<string, decimal> {{"Beer", 500.0m}}},
+		{"Cola", new Dictionary<string, decimal> {{"Cola", 350.0m}}}
+//		{"Diesel", new Dictionary<string, decimal> {{"Beer", 250.0m}, {"Cola", 250.0m}}},
+//		{"Cuba Libre", new Dictionary<string, decimal> {{"Cola", 100.0m}, {"Schnapps", 60.0m}, {"Lemon", 0.5m}}},
+//		{"Sex on the Beach", new Dictionary<string, decimal> { {"Schnapps", 40.0m}, {"Orange", 40.0m}, {"Pineapple", 20.0m}, {"Grenadine", 10.0m}}}
 	};
 
 	// How much % alcohol does an ingredient contain?

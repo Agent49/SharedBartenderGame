@@ -22,6 +22,7 @@ public abstract class Container : MonoBehaviour {
 	protected void InitializeParticleSystem() {
 		if (transform.childCount == 1) {
 			particleSource = gameObject.transform.GetChild (0);
+			Debug.Log (particleSource);
 			Particles = particleSource.GetComponent<ParticleSystem> ();
 			if (liquidColor != null){
 				// Overwriting Particles.main is not permitted

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IngredientContainer : Container {
 
-	private float timeStep = 0.5f;
+	private float timeStep = 0.4f;
 	private float initialTime;
 	private decimal sip = 10.0m;
 
@@ -44,7 +44,7 @@ public class IngredientContainer : Container {
 	}
 
 	public void FlowOut() {
-
+		Debug.Log (particleSource.transform.position);
 		if (Physics.Raycast(particleSource.transform.position, Vector3.down, out hit, range)) {
 			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
 
