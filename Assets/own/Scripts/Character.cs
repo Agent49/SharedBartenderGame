@@ -29,6 +29,15 @@ public class Character : MonoBehaviour {
 				{"tipsy", new string[] {"Jetzt geht's mir schon viel besser."}},
 				{"drunken", new string[] {"Hey Mann, du bist mein bester Freund. Ich liebe dich!"}}
 			}
+		},
+		{
+			"Egon", new Dictionary<string, string[]>() {
+				{"hello", new string[] {"Guten Morgen, Alter!"}},
+				{"complaint", new string[] {"Hast"}},
+				{"sober", new string[] {"Was für'n beschissener Tag!"}},
+				{"tipsy", new string[] {"Jetzt geht's mir schon viel besser."}},
+				{"drunken", new string[] {"Hey Mann, du bist mein bester Freund. Ich liebe dich!"}}
+			}
 		}
 	};
 
@@ -36,9 +45,16 @@ public class Character : MonoBehaviour {
 	/*
 	 * Character: Call constructor to assign specific character properties
 	 */
-	public Character(string Name) {
-		Name = Name;
+	public Character(string name) {
+		Name = name;
 		SetProperties ();
+	}
+
+	public string GetTalkByKey(string key) {
+		Debug.Log (Talk);
+		string[] messageOptions = Talk [key];
+		Debug.Log (messageOptions[0]);
+		return messageOptions [Random.Range (0, messageOptions.Length)];
 	}
 
 	private void SetProperties() {
@@ -51,6 +67,12 @@ public class Character : MonoBehaviour {
 			Talk = TalkList [Name];
 			break;
 		case "Klaus":
+			Durability = 3.5f;
+			Generousness = new float[] { 0.8f, 0.85f, 1.0f };
+			FavoriteDrinks = new string[] { "Beer" };
+			Talk = TalkList [Name];
+			break;
+		case "Egon":
 			Durability = 3.5f;
 			Generousness = new float[] { 0.8f, 0.85f, 1.0f };
 			FavoriteDrinks = new string[] { "Beer" };

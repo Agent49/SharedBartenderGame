@@ -1,19 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Client : MonoBehaviour {
 
+	private string name;
+	private Character character;
 	private Request request;
+	private TextMesh chat;
 
 	// Use this for initialization
 	void Start () {
-		request = new Request ();
+		name = gameObject.name;
+		chat = transform.GetChild (1).GetComponent<TextMesh> ();
+		character = new Character (name);
+		Chat (character.GetTalkByKey("hello"));
+		OrderDrink ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	private void Chat(string message, bool append = false) {
+		if (append)
+			chat.text += message;
+		else
+			chat.text = message;
+	}
+
+	public void OrderDrink() {
+		request = new Request ();
 	}
 
 	public float GetDrink(Collider other) {

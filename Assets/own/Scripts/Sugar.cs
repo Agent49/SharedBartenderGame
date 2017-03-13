@@ -63,7 +63,7 @@ public class Sugar : MonoBehaviour {
 			}				
 		}
 
-		ReSpawn(0.1f);
+		ReSpawn(0.0f);
 
 		return true;
 	}
