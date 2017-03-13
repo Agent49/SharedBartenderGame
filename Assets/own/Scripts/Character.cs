@@ -36,7 +36,8 @@ public class Character : MonoBehaviour {
 				{"complaint", new string[] {"Hast"}},
 				{"sober", new string[] {"Was für'n beschissener Tag!"}},
 				{"tipsy", new string[] {"Jetzt geht's mir schon viel besser."}},
-				{"drunken", new string[] {"Hey Mann, du bist mein bester Freund. Ich liebe dich!"}}
+				{"drunken", new string[] {"Hey Mann, du bist mein bester Freund. Ich liebe dich!"}},
+				{"order", new string[] {"Ich hätte gern ein "}}
 			}
 		}
 	};
@@ -50,10 +51,8 @@ public class Character : MonoBehaviour {
 		SetProperties ();
 	}
 
-	public string GetTalkByKey(string key) {
-		Debug.Log (Talk);
+	public string Say(string key) {
 		string[] messageOptions = Talk [key];
-		Debug.Log (messageOptions[0]);
 		return messageOptions [Random.Range (0, messageOptions.Length)];
 	}
 

@@ -51,6 +51,7 @@ public class Drink : MonoBehaviour {
 		DetermineVolume ();
 	}
 
+
 	/*
 	 * @return: array of key which are names of drinks
 	 */
@@ -89,5 +90,25 @@ public class Drink : MonoBehaviour {
 		foreach(KeyValuePair<string, decimal> entry in Ingredients) {
 			Volume += entry.Value;
 		}
+	}
+
+	public string ToString() {
+		string objectString = "DRINK";
+		if (Name != null)
+			objectString += "\nName: " + Name;
+		if(Price != null)
+			objectString += "\nPrice: " + Price;
+		if(Volume != null)
+			objectString += "\nVolume: " + Volume;
+
+		if (Ingredients != null)
+			foreach (KeyValuePair<string, decimal> entry in Ingredients)
+				objectString += "\n" + entry.Key + ": " + entry.Value;
+
+		if (Sugar != null)
+			foreach (KeyValuePair<string, decimal> entry in Ingredients)
+				objectString += "\n" +  entry.Key + ": " + entry.Value;
+
+		return objectString;
 	}
 }

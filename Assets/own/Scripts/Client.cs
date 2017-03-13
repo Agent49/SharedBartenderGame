@@ -15,7 +15,7 @@ public class Client : MonoBehaviour {
 		name = gameObject.name;
 		chat = transform.GetChild (1).GetComponent<TextMesh> ();
 		character = new Character (name);
-		Chat (character.GetTalkByKey("hello"));
+		Chat (character.Say("hello"));
 		OrderDrink ();
 	}
 
@@ -33,6 +33,8 @@ public class Client : MonoBehaviour {
 
 	public void OrderDrink() {
 		request = new Request ();
+		Chat (character.Say ("order") + request.RequestedDrink.Name);
+		Debug.Log (request.RequestedDrink.ToString());
 	}
 
 	public float GetDrink(Collider other) {
