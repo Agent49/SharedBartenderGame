@@ -8,7 +8,7 @@ public class Sugar : MonoBehaviour {
 	private string Name;
 	private Vector3 spawnPosition;
 	private DrinkContainer drinkContainer;
-	Regex rgx = new Regex(@"[\b\s-_]+");
+	private Regex rgx = new Regex(@"[\b\s-_]+");
 
 	// Use this for initialization
 	void Start () {

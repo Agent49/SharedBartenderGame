@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public abstract class Container : MonoBehaviour {
@@ -12,6 +13,7 @@ public abstract class Container : MonoBehaviour {
 	protected Color liquidColor;
 	protected RaycastHit hit;
 	protected float range = 20f;
+	protected Regex rgx = new Regex(@"[\b\s-_]+");
 
 	protected Vector3 spawnPosition;
 

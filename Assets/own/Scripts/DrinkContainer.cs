@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DrinkContainer : Container {
 	
-	public Dictionary<string, decimal> Ingredients = new Dictionary<string, decimal> ();
-	public Dictionary<string, int> Sugar = new Dictionary<string, int> ();
+	public Dictionary<string, decimal> Ingredients;
+	public Dictionary<string, int> Sugar;
 
 	// Use this for initialization
 	void Start () {
@@ -20,12 +20,18 @@ public class DrinkContainer : Container {
 
 	protected override void Initialize() {
 		// Derive Ingredient from gameObject name
-		Name = transform.name.Split ('_')[0];	
+		Name = rgx.Split(transform.name)[0];
 		// Assign maxVolume
 		MaxVol = Stock.GetDrinkContainer(Name);
 		Volume = 0.0m;
 		// Remember where object was initialized to respawn it
 		spawnPosition = transform.position;
+
+		Ingredients = new Dictionary<string, decimal> ();;
+		Sugar = new Dictionary<string, int> ();
+
+		foreach(Transform child in transform)
+			child.gameObject.SetActive (false);
 	}
 
 	/*

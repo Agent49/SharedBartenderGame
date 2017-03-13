@@ -45,8 +45,6 @@ public class Request : MonoBehaviour {
 		ReceivedDrink = new Drink (drinkContainer);
 		Debug.Log(ReceivedDrink.ToString ());
 
-		Debug.Log("Rate: " + rateMix());
-
 		return true;
 	}
 
