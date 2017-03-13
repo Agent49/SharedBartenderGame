@@ -26,7 +26,7 @@ public class Client : MonoBehaviour {
 
 	private void Chat(string message, bool append = false) {
 		if (append)
-			chat.text += message;
+			chat.text += "\n" + message;
 		else
 			chat.text = message;
 	}
@@ -53,12 +53,14 @@ public class Client : MonoBehaviour {
 	private float TakeDrink() {
 		float delay = (float)request.ReceivedDrink.Volume * 0.02f;
 		Debug.Log ("TakeDrink");
+		Chat (character.Say (request.FeedBack), true);
 		OrderDrink (delay);
 		return 10f;
 	}
 
 	private float DenyDrink() {;
 		Debug.Log ("DenyDrink");
+		Chat (character.Say (request.FeedBack), true);
 		return 5f;
 	}
 }

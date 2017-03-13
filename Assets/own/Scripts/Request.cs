@@ -10,6 +10,7 @@ public class Request : MonoBehaviour {
 	public int Rate;
 	public float InitialTime;
 	public int Tip;
+	public string FeedBack;
 
 	private int requestState;
 
@@ -33,12 +34,14 @@ public class Request : MonoBehaviour {
 		if (drinkContainer == null) {
 			// Object not of type DrinkContainer
 			requestState = 1;
+			FeedBack = "no_drink_container";
 			return false;
 		}
 
 		if((drinkContainer.Ingredients == null) || (drinkContainer.Ingredients.Count == 0)) {
 			// Nothing in DrinkContainer
 			requestState = 2;
+			FeedBack = "empty_drink_container";
 			return false;
 		}
 
@@ -57,13 +60,12 @@ public class Request : MonoBehaviour {
 
 		// Anything in DrinkContainer but not the requested Drink
 		requestState = 3;
+		FeedBack = "no_drink_match";
 
 		// 1) If list of ingredients missmatches
 		if (ReceivedDrink.Ingredients.Count != RequestedDrink.Ingredients.Count)
 			return false;
 
-		// Approach: The Drink is takeable
-		requestState = 4;
 
 		// 2) Iterate over RequestedDrink Ingredients
 		// 2.1) Deny if Drink does not contain one ingredient in receipe
@@ -80,6 +82,10 @@ public class Request : MonoBehaviour {
 				return false;
 			}
 		}
+
+		// Approach: The Drink is takeable
+		requestState = 4;
+		FeedBack = "drink_okay";
 			
 		// 3) Iterate over RequestedDrink Sugar
 		int numOfSugars;
@@ -88,8 +94,10 @@ public class Request : MonoBehaviour {
 				Rate++;
 		}
 
-		if (Rate > 2)
+		if (Rate > 2) {
 			requestState = 5;
+			FeedBack = "great_drink";
+		}
 
 		return true;
 	}

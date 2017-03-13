@@ -37,7 +37,12 @@ public class Character : MonoBehaviour {
 				{"sober", new string[] {"Was für'n beschissener Tag!"}},
 				{"tipsy", new string[] {"Jetzt geht's mir schon viel besser."}},
 				{"drunken", new string[] {"Hey Mann, du bist mein bester Freund. Ich liebe dich!"}},
-				{"order", new string[] {"Ich hätte gern ein "}}
+				{"order", new string[] {"Ich hätte gern ein "}},
+				{"no_drink_container", new string[] {"Hä? Was soll ich denn damit?"}},
+				{"empty_drink_container", new string[] {"Warum denn so geizig?"}},
+				{"no_drink_match", new string[] {"Ich weiß ja nicht was das sein soll, aber das ist sicher nicht was ich bestellt habe."}},
+				{"drink_okay", new string[] {"Danke."}},
+				{"great_drink", new string[] {"Wow! Wo hast du gelernt solch fette Drinks zu mischen?"}}
 			}
 		}
 	};
@@ -54,13 +59,6 @@ public class Character : MonoBehaviour {
 	public string Say(string key) {
 		string[] messageOptions = Talk [key];
 		return messageOptions [Random.Range (0, messageOptions.Length)];
-	}
-
-	public string Comment(int requestState) {
-		switch(requestState) {
-		case 1:
-			
-		}
 	}
 
 	private void SetProperties() {
