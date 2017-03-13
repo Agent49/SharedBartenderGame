@@ -38,21 +38,20 @@ public class Client : MonoBehaviour {
 	}
 
 	public float GetDrink(Collider other) {
-		DrinkContainer drinkContainer = other.GetComponent<DrinkContainer> ();
-
-		if (drinkContainer != null)
-			return TakeDrink (drinkContainer);
+		// Is container? Contains anything? Was is the right drink?
+		if (request.Receive (other))
+			return TakeDrink ();
 		else
-			return DenyDrink();
+			return DenyDrink ();
 	}
 
-	private float TakeDrink(DrinkContainer drinkContainer) {
-		request.Receive (drinkContainer);
+	private float TakeDrink() {
+		Debug.Log(request.RequestState);
 		return 10f;
 	}
 
-	private float DenyDrink() {
-		Debug.Log ("Deny");
+	private float DenyDrink() {;
+		Debug.Log(request.RequestState);
 		return 5f;
 	}
 }

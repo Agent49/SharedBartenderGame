@@ -54,7 +54,7 @@ public class ClientController : MonoBehaviour {
 	 * @return bool: RequestMatch
 	 */
 	private bool TakeDrink(Dictionary<string, decimal> Mix) {
-		int rate = Request.RateMix(Mix);
+		int rate = Request.old_RateMix(Mix);
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
 		if (Request.Match) {
 			GiveMoney ();

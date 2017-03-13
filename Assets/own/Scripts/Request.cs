@@ -11,6 +11,8 @@ public class Request : MonoBehaviour {
 	public float InitialTime;
 	public int Tip;
 
+	private int requestState;
+
 	/*
 	 * Constructed everytime a client makes a request
 	 */
@@ -21,11 +23,71 @@ public class Request : MonoBehaviour {
 		RequestedDrink = new Drink(drinkList[Random.Range(0, drinkList.Length)]);
 		// 3.) Time to evaluate duration
 		InitialTime = Time.time;
+		// 4.) Set first requestState "0" which is: not yet processed
+		requestState = 0;
 	}
 
-	public void Receive(DrinkContainer drinkContainer) {
+	public bool Receive(Collider other) {
+		DrinkContainer drinkContainer = other.GetComponent<DrinkContainer> ();
+
+		if (drinkContainer == null) {
+			// Object not of type DrinkContainer
+			requestState = 1;
+			return false;
+		}
+
+		if((drinkContainer.Ingredients == null) || (drinkContainer.Ingredients.Count == 0)) {
+			// Nothing in DrinkContainer
+			requestState = 2;
+			return false;
+		}
+
 		ReceivedDrink = new Drink (drinkContainer);
-		Debug.Log (drinkContainer.Ingredients);
+		Debug.Log(ReceivedDrink.ToString ());
+
+		Debug.Log("Rate: " + rateMix());
+
+		return true;
+	}
+
+	public int RequestState {
+		get { return requestState; }
+	}
+
+	private int rateMix() {
+		int rate = 0;
+
+		// Anything in DrinkContainer but not the requested Drink
+		requestState = 3;
+
+		// 1) If list of ingredients missmatches
+		if (ReceivedDrink.Ingredients.Count != RequestedDrink.Ingredients.Count)
+			return -1;
+
+		// Approach: The Drink is takeable
+		requestState = 4;
+
+		// 2) Iterate over RequestedDrink Ingredients
+		decimal volume;
+		foreach(KeyValuePair<string, decimal> entry in RequestedDrink.Ingredients) {
+			// If Ingredient is in DrinkContainer
+			if(ReceivedDrink.Ingredients.TryGetValue(entry.Key, out volume)) {
+				if (volume == entry.Value)
+					rate++;
+			} else {
+				requestState = 3;
+				return -1;
+			}
+		}
+			
+		// 3) Iterate over RequestedDrink Sugar
+		int numOfSugars;
+		foreach (KeyValuePair<string, int> entry in RequestedDrink.Sugar) {
+			if (ReceivedDrink.Sugar.TryGetValue (entry.Key, out numOfSugars))
+				rate++;
+		}
+			
+		return rate;
 	}
 
 	/*
@@ -37,7 +99,7 @@ public class Request : MonoBehaviour {
 	 * 
 	 * @return rate: 0 to 5
 	 */ 	
-	public int RateMix(Dictionary<string, decimal> Mix) {
+	public int old_RateMix(Dictionary<string, decimal> Mix) {
 		Rate = 0;
 
 		// If list of ingredients missmatches
