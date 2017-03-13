@@ -45,36 +45,39 @@ public class Request : MonoBehaviour {
 		ReceivedDrink = new Drink (drinkContainer);
 		Debug.Log(ReceivedDrink.ToString ());
 
-		return true;
+		return rateMix ();
 	}
 
 	public int RequestState {
 		get { return requestState; }
 	}
 
-	private int rateMix() {
-		int rate = 0;
+	private bool rateMix() {
+		Rate = 0;
 
 		// Anything in DrinkContainer but not the requested Drink
 		requestState = 3;
 
 		// 1) If list of ingredients missmatches
 		if (ReceivedDrink.Ingredients.Count != RequestedDrink.Ingredients.Count)
-			return -1;
+			return false;
 
 		// Approach: The Drink is takeable
 		requestState = 4;
 
 		// 2) Iterate over RequestedDrink Ingredients
+		// 2.1) Deny if Drink does not contain one ingredient in receipe
+		// 2.2) Upvote if Volume matches
+		// Hint: For better balance Overall volume won't be checked but implicitly by this routine if player filled-up
 		decimal volume;
 		foreach(KeyValuePair<string, decimal> entry in RequestedDrink.Ingredients) {
 			// If Ingredient is in DrinkContainer
 			if(ReceivedDrink.Ingredients.TryGetValue(entry.Key, out volume)) {
 				if (volume == entry.Value)
-					rate++;
+					Rate++;
 			} else {
 				requestState = 3;
-				return -1;
+				return false;
 			}
 		}
 			
@@ -82,10 +85,13 @@ public class Request : MonoBehaviour {
 		int numOfSugars;
 		foreach (KeyValuePair<string, int> entry in RequestedDrink.Sugar) {
 			if (ReceivedDrink.Sugar.TryGetValue (entry.Key, out numOfSugars))
-				rate++;
+				Rate++;
 		}
-			
-		return rate;
+
+		if (Rate > 2)
+			requestState = 5;
+
+		return true;
 	}
 
 	/*

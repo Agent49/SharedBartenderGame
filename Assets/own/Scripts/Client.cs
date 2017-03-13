@@ -31,10 +31,15 @@ public class Client : MonoBehaviour {
 			chat.text = message;
 	}
 
-	public void OrderDrink() {
+	public void OrderDrink(float orderTime = 0.0f) {
+		StartCoroutine (DelayedOrderDrink (orderTime));
+	}
+
+	IEnumerator DelayedOrderDrink(float orderTime) {
+		yield return new WaitForSeconds(orderTime);
 		request = new Request ();
 		Chat (character.Say ("order") + request.RequestedDrink.Name);
-		Debug.Log (request.RequestedDrink.ToString());
+		Debug.Log (request.RequestedDrink.ToString());		
 	}
 
 	public float GetDrink(Collider other) {
@@ -46,12 +51,14 @@ public class Client : MonoBehaviour {
 	}
 
 	private float TakeDrink() {
-		Debug.Log(request.RequestState);
+		float delay = (float)request.ReceivedDrink.Volume * 0.02f;
+		Debug.Log ("TakeDrink");
+		OrderDrink (delay);
 		return 10f;
 	}
 
 	private float DenyDrink() {;
-		Debug.Log(request.RequestState);
+		Debug.Log ("DenyDrink");
 		return 5f;
 	}
 }

@@ -56,6 +56,13 @@ public class Character : MonoBehaviour {
 		return messageOptions [Random.Range (0, messageOptions.Length)];
 	}
 
+	public string Comment(int requestState) {
+		switch(requestState) {
+		case 1:
+			
+		}
+	}
+
 	private void SetProperties() {
 		switch(Name) {
 		// Does not drink alcohol at all, is a bit Hipster

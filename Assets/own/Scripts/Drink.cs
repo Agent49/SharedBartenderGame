@@ -67,19 +67,19 @@ public class Drink : MonoBehaviour {
 		switch(Name) {
 		case "Beer":
 			Price = 3;
+			Sugar = new Dictionary<string, int> ();
 			break;
 		case "Cola":
 			Price = 2;
-			Sugar = new Dictionary<string, int> () { { "lemon", 1 } };
+			Sugar = new Dictionary<string, int> () { { "Ice", 1 } };
 			break;
 		case "Diesel":
 			Price = 2.5m;
+			Sugar = new Dictionary<string, int> ();
 			break;
 		case "Cuba Libre":
 			Price = 6;
-			break;
-		case "Sex on the Beach":
-			Price = 6.5m;
+			Sugar = new Dictionary<string, int> () { { "Ice", 1 } };
 			break;
 		}
 	}
