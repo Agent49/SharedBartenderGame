@@ -15,22 +15,22 @@ public class GameMaster : MonoBehaviour {
 	public static Text DebugText;
 
 	void Start() {
-//		SaveScoreMenu = GameObject.Find ("SaveScoreMenu").transform;
+		SaveScoreMenu = GameObject.Find ("SaveScoreMenu").transform;
 		Ingredients = GameObject.Find ("Ingredients").transform;
 		DebugText = GameObject.Find ("DebugOutText").transform.GetComponent<Text> ();
 		TillText = GameObject.Find ("TillText").transform.GetComponent<TextMesh>();
 
 		NameInput = GameObject.Find("NameInput").GetComponent<InputField> ();
 
-//		SaveScoreMenu.gameObject.SetActive (false);
+		SaveScoreMenu.gameObject.SetActive (false);
 	}
 
 	void Update() {
-//		if (Input.GetKeyDown (KeyCode.Backspace))
-//			ShowSaveScoreMenu ();
-//
-//		if (SaveScoreMenu.gameObject.activeSelf && Input.GetKeyDown (KeyCode.Return))
-//			SaveScore ();
+		if (Input.GetKeyDown (KeyCode.Backspace))
+			ShowSaveScoreMenu ();
+
+		if (SaveScoreMenu.gameObject.activeSelf && Input.GetKeyDown (KeyCode.Return))
+			SaveScore ();
 	}
 
 	public static void DebugOut(string debugText) {
@@ -43,9 +43,9 @@ public class GameMaster : MonoBehaviour {
 	}
 		
 	public static void ShowSaveScoreMenu() {
-//		SaveScoreMenu.gameObject.SetActive (true);
-//		NameInput.Select ();
-//		NameInput.ActivateInputField ();
+		SaveScoreMenu.gameObject.SetActive (true);
+		NameInput.Select ();
+		NameInput.ActivateInputField ();
 	}
 
 	public static void SaveScore() {
