@@ -97,6 +97,8 @@ public class PersonContoller : MonoBehaviour {
 
 		if (hit.transform.IsChildOf (clients)) {
 			InteractClient ();
+		} else if (hit.transform.gameObject.name.Equals("ToiletTrigger")){
+			Debug.Log ("Toilet");
 		} else {
 			PickupItem ();
 		}
