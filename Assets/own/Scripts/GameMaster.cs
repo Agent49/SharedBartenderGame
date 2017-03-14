@@ -14,7 +14,7 @@ public class GameMaster : MonoBehaviour {
 	public static TextMesh TillText;
 	public static decimal Cash = 0.00m;
 
-	public static SaveData SaveData = new SaveData ();
+	public static SaveData saveData = new SaveData ();
 
 	public static Text DebugText;
 
@@ -27,6 +27,8 @@ public class GameMaster : MonoBehaviour {
 		NameInput = GameObject.Find("NameInput").GetComponent<InputField> ();
 
 		SaveScoreMenu.gameObject.SetActive (false);
+
+		LoadScore ();
 	}
 
 	void Update() {
@@ -53,22 +55,29 @@ public class GameMaster : MonoBehaviour {
 	}
 
 	public static void LoadScore() {
-		
+		string json = PlayerPrefs.GetString ("highscores");
+		Debug.Log (json);
+		saveData = JsonConvert.DeserializeObject<SaveData> (json);
 	}
 
 	public static void SaveScore() {
 		Debug.Log (NameInput.text);
 		Debug.Log (DateTime.Now.ToString ());
 		Highscore highscore = new Highscore (
-			SaveData.Highscores.Count,
+			saveData.Highscores.Count,
 			NameInput.text,
 			Cash,
 			DateTime.Now.ToString()
 		);
 
-		SaveData.Highscores.Add (highscore);
-		string json = JsonConvert.SerializeObject (SaveData);
-		Debug.Log (json);
+		saveData.Highscores.Add (highscore);
+		string json = JsonConvert.SerializeObject (saveData);
+
+		PlayerPrefs.SetString ("highscores", json);
+	}
+
+	public static void ShowScore() {
+		
 	}
 
 	public static void EnterToilet() {
