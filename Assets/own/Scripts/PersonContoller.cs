@@ -85,34 +85,12 @@ public class PersonContoller : MonoBehaviour {
 	 * Ingredient, Glass/Shaker and Client
 	 */
 	void Interact() {
-		// If click on ingredient always replace inventory with it
-//		if (hit.transform.IsChildOf (GameMaster.Ingredients)) {
-//			InteractIngredient();
-//		}
-
-		// If hit Equipment
-//		if (hit.transform.IsChildOf (equipment)) {
-//			InteractEquipment ();
-//		}
-
-		if (hit.transform.IsChildOf (clients)) {
-			InteractClient ();
-		} else if (hit.transform.gameObject.name.Equals("ToiletTrigger")) {
+		if (hit.transform.gameObject.name.Equals("ToiletTrigger")) {
 			GameMaster.MenuHighscore();
 		} else if (hit.transform.gameObject.name.Equals("ExitTrigger")) {
 			GameMaster.MenuExit ();
 		} else {
 			PickupItem ();
-		}
-
-//		if (hit.transform.IsChildOf (sugar)) {
-//			InteractSugar ();
-//		}
-
-
-		// Empty Equipment if it hits the sink
-		if(hit.transform.gameObject.name.Equals("Sink")) {
-			EmptyEquipment ();
 		}
 	}
 
@@ -128,33 +106,6 @@ public class PersonContoller : MonoBehaviour {
 	 */
 	private void InteractSugar() {
 		PickupItem ();
-	}
-
-	/*
-	 * Raycast hits Equipment
-	 */
-	private void InteractEquipment() {
-		PickupItem ();
-//		// If nothing in Inventory or other Equipment, pickup this!
-//		if (Inventory == null || Inventory.IsChildOf (equipment))
-//			// pickupItem ();
-//
-//		// If Ingredient in Inventory, mix it!
-//		if(Inventory.IsChildOf(GameMaster.Ingredients)) 
-//			hit.transform.SendMessage ("AddIngredient", Inventory);
-	}
-
-	/*
-	 * Raycast hits Client
-	 */
-	private void InteractClient() {
-		
-//		if (Inventory != null) {
-//			hit.transform.SendMessage ("GetDrink", Inventory);
-//		}
-//		else {
-//			hit.transform.SendMessage ("SmallTalk");			
-//		}
 	}
 
 	/*
@@ -239,14 +190,5 @@ public class PersonContoller : MonoBehaviour {
 			Quaternion targetRot = Quaternion.LookRotation (Vector3.down);
 			rightItem.transform.rotation = Quaternion.Slerp (rightItem.transform.rotation, targetRot, Time.deltaTime * 0.5f);
 		}
-	}
-
-	/*
-	 * Empty Equipment: Clear DrinkIngredients out of Equipment
-	 */
-	private void EmptyEquipment() {
-		if(Inventory.IsChildOf(equipment)) {
-			Inventory.GetComponent<DrinkController> ().EmptyEquipment ();
-		}		
 	}
 }

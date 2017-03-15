@@ -74,7 +74,7 @@ public class DrinkContainer : Container {
 	}
 
 	public int GiveMeSugarBaby(string sugarName) {
-		int sugarNum = 1;
+		int sugarNum = 0;
 
 		if (Sugar.TryGetValue (sugarName, out sugarNum))
 			Sugar [sugarName] += 1;
