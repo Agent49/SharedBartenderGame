@@ -21,14 +21,12 @@ public class Sugar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(interactibleItem.IsAttached)
-			transform.gameObject.GetComponent<BoxCollider> ().enabled = false;
 	}
 
 	void OnTriggerEnter(Collider other) {
 		drinkContainer = other.gameObject.GetComponent<DrinkContainer> ();
-//		if(drinkContainer != null && !interactibleItem.IsAttached)
-//			GetSugar ();
+		if(drinkContainer != null && !interactibleItem.IsAttached)
+			GetSugar ();
 	}
 
 	/*
@@ -47,11 +45,12 @@ public class Sugar : MonoBehaviour {
 		if(drinkContainer != null)
 			AddSugar ();
 
-		ReSpawn(0.0f);
+		transform.gameObject.GetComponent<BoxCollider> ().enabled = true;
 	}
 
 	private bool AddSugar() {		
 		Debug.Log ("AddSugar");
+		ReSpawn(0.0f);
 		// If Collider still is disabled then last thing happend is falling into a glas
 		foreach(Transform child in drinkContainer.gameObject.transform) {
 			if (Name.Equals (rgx.Split (child.name) [0]) && !child.gameObject.activeSelf) {
