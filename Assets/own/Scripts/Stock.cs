@@ -17,9 +17,9 @@ public static class Stock {
 		{"GlassBeer", 500.0m },
 		{"GlassCocktail", 400.0m },
 		{"GlassLongdrink", 350.0m },
-		{"GlassRedWine", 250.0m },
-		{"GlassWhiteWine", 200.0m },
-		{"GlassSparklingWine", 150.0m },
+		{"GlassSoftdrink", 300.0m },
+		{"GlassWine", 250.0m },
+		{"GlassSparklingWine", 200.0m },
 		{"GlassDoubleShot", 40.0m },
 		{"GlassDouble", 20.0m }
 	};

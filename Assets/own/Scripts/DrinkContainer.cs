@@ -14,8 +14,6 @@ public class DrinkContainer : Container {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("x"))
-			Debug.Log ("X pressed.");
 	}
 
 	protected override void Initialize() {
