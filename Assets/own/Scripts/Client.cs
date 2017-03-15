@@ -9,9 +9,12 @@ public class Client : MonoBehaviour {
 	private Character character;
 	private Request request;
 	private TextMesh chat;
+	private float stayTime = 10f;
 
 	// Use this for initialization
 	void Start () {
+		GameMaster.NumOfClients++;
+
 		name = gameObject.name;
 		chat = transform.GetChild (1).GetComponent<TextMesh> ();
 		character = new Character (name);
@@ -67,5 +70,10 @@ public class Client : MonoBehaviour {
 
 	private void GiveMoney() {
 		GameMaster.MakeCash (request.RequestedDrink.Price);
+	}
+
+	private void Leave() {
+		if ((GameMaster.StartTime + stayTime) > Time.time)
+			Debug.Log ("Leave");
 	}
 }

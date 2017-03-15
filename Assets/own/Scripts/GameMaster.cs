@@ -23,12 +23,19 @@ public class GameMaster : MonoBehaviour {
 	public static TextMesh TillText;
 	public static decimal Cash = 0.00m;
 
-	private bool GameSession { get; set; }
-	private bool GameStop { get; set; }
+	public static float StartTime;
+	private static bool gameSession { get; set; }
+	private static bool gameStop{ get; set; }
+	public static int NumOfClients { get; set; }
 
 	public static SaveData saveData = new SaveData ();
 
 	public static Text DebugText;
+
+	void Awake() {
+		NumOfClients = 0;
+		StartTime = Time.time;
+	}
 
 	void Start() {
 		Ingredients = GameObject.Find ("Ingredients").transform;

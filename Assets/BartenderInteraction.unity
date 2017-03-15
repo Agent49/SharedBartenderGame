@@ -9564,7 +9564,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -0.2, y: 0.5, z: 0.5}
+  m_Center: {x: -0.1, y: 0.5, z: 0.5}
 --- !u!114 &582675525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9590,7 +9590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &584794948
 Transform:
   m_ObjectHideFlags: 0
@@ -11529,6 +11529,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 702040897}
+  - component: {fileID: 702040898}
+  - component: {fileID: 702040899}
   m_Layer: 0
   m_Name: Bastian
   m_TagString: Interaction
@@ -11553,6 +11555,29 @@ Transform:
   m_Father: {fileID: 2075596257}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &702040898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702040896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 1}
+  m_Center: {x: 11.7, y: 1.55, z: 10.3}
+--- !u!114 &702040899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702040896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3166869db136c544bfea1ff346f0bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705851623
 GameObject:
   m_ObjectHideFlags: 0
@@ -15741,6 +15766,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 817195548}
+  - component: {fileID: 817195549}
+  - component: {fileID: 817195550}
   m_Layer: 0
   m_Name: Klaus
   m_TagString: Interaction
@@ -15765,6 +15792,29 @@ Transform:
   m_Father: {fileID: 2075596257}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &817195549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817195547}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47, y: 1, z: 0.5}
+  m_Center: {x: 12.8, y: 1.55, z: 10.9}
+--- !u!114 &817195550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817195547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3166869db136c544bfea1ff346f0bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &819228510
 GameObject:
   m_ObjectHideFlags: 0
@@ -15779,7 +15829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &819228511
 Transform:
   m_ObjectHideFlags: 0
