@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class RespawnTrigger : MonoBehaviour {
 
+	private bool isTrigger = true;
+
 	public bool OnTriggerEnter(Collider other){
+		
+		if (!isTrigger)
+			return false;
+
 		float spawnTime;
 
-		if (gameObject.name.Equals ("Tray"))
+		if (gameObject.name.Equals ("Tray")) {
 			spawnTime = transform.parent.gameObject.GetComponent<Client> ().GetDrink (other);
-		else
+			isTrigger = false;
+			StartCoroutine (DelayedEnableTrigger (spawnTime));
+		} else {
 			spawnTime = 5f;
-			
+		}
 
 		IngredientContainer ingredientContainer = other.GetComponent<IngredientContainer> ();
 		if (ingredientContainer != null) {
@@ -33,4 +41,10 @@ public class RespawnTrigger : MonoBehaviour {
 
 		return false;
 	}
+
+	IEnumerator DelayedEnableTrigger(float enableDelay) {
+		yield return new WaitForSeconds (enableDelay);
+		isTrigger = true;
+	}
+
 }
