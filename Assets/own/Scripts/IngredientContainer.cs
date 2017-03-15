@@ -15,7 +15,7 @@ public class IngredientContainer : Container {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.rotation.eulerAngles.x < 90) {
+		if (transform.rotation.eulerAngles.x < 90 && (Volume > 0)) {
 			FlowOut ();
 		} else {
 			initialTime = 0.0f;
@@ -48,17 +48,17 @@ public class IngredientContainer : Container {
 			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
 
 			// If hit object is a DrinkContainer (has sript attached)
-			if (drinkContainer != null) {
+			if ((drinkContainer != null)) {
 
 				if (initialTime == 0)
 					initialTime = Time.time;
 
 				if (Input.GetMouseButton (2) && ((Time.time - initialTime) >= (timeStep))) {
 					initialTime = Time.time;
-					drinkContainer.fillUp (Name);
+					Volume -= drinkContainer.fillUp (Name);
 				} else if((Time.time - initialTime) >= timeStep) {
 					initialTime = Time.time;
-					drinkContainer.fillIn (Name, sip);
+					Volume -= drinkContainer.fillIn (Name, sip);
 				}
 			}
 		}
