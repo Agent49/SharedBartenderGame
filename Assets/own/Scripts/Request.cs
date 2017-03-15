@@ -9,10 +9,11 @@ public class Request : MonoBehaviour {
 	public bool Match;
 	public int Rate;
 	public float OrderTime;
-	public int Tip;
+	public int old_Tip;
+	public decimal Tip = 0m;
 	public string FeedBack;
 
-	private int requestState;
+	public int State;
 
 	/*
 	 * Constructed everytime a client makes a request
@@ -25,7 +26,7 @@ public class Request : MonoBehaviour {
 		// 3.) Time to evaluate duration
 		OrderTime = Time.time;
 		// 4.) Set first requestState "0" which is: not yet processed
-		requestState = 0;
+		State = 0;
 
 		Match = false;
 	}
@@ -35,14 +36,14 @@ public class Request : MonoBehaviour {
 
 		if (drinkContainer == null) {
 			// Object not of type DrinkContainer
-			requestState = 1;
+			State = 1;
 			FeedBack = "no_drink_container";
 			return false;
 		}
 
 		if((drinkContainer.Ingredients == null) || (drinkContainer.Ingredients.Count == 0)) {
 			// Nothing in DrinkContainer
-			requestState = 2;
+			State = 2;
 			FeedBack = "empty_drink_container";
 			return false;
 		}
@@ -54,14 +55,24 @@ public class Request : MonoBehaviour {
 	}
 
 	public int RequestState {
-		get { return requestState; }
+		get { return State; }
 	}
 
+
+	/*
+	 * Rate Mix: Check ingredients and amount
+	 * 
+	 * Maximum amount of stars also depends also on complexity of drink (number of total ingredients)
+	 * Basic ingredients (Cola, Beer...) never can be exact in amount. In this way thay can't contribute
+	 * to the rating. Either they are or they aren't in the drink.
+	 * 
+	 * @return rate: 0 to 5
+	 */
 	private bool rateMix() {
 		Rate = 0;
 
 		// Anything in DrinkContainer but not the requested Drink
-		requestState = 3;
+		State = 3;
 		FeedBack = "no_drink_match";
 
 		// 1) If list of ingredients missmatches
@@ -80,13 +91,13 @@ public class Request : MonoBehaviour {
 				if (volume == entry.Value)
 					Rate++;
 			} else {
-				requestState = 3;
+				State = 3;
 				return false;
 			}
 		}
 
 		// Approach: The Drink is takeable
-		requestState = 4;
+		State = 4;
 		Match = true;
 		FeedBack = "drink_okay";
 			
@@ -98,47 +109,13 @@ public class Request : MonoBehaviour {
 		}
 
 		if (Rate > 2) {
-			requestState = 5;
+			State = 5;
 			FeedBack = "great_drink";
 		}
 
 		return true;
 	}
 
-	/*
-	 * Rate Mix: Check ingredients and amount
-	 * 
-	 * Maximum amount of stars also depends also on complexity of drink (number of total ingredients)
-	 * Basic ingredients (Cola, Beer...) never can be exact in amount. In this way thay can't contribute
-	 * to the rating. Either they are or they aren't in the drink.
-	 * 
-	 * @return rate: 0 to 5
-	 */ 	
-	public int old_RateMix(Dictionary<string, decimal> Mix) {
-		Rate = 0;
-
-		// If list of ingredients missmatches
-		if (Mix.Count != RequestedDrink.Ingredients.Count) {
-			Match = false;
-			return 0;
-		}
-
-		// Iterate over targetDrink
-		foreach(var item in RequestedDrink.Ingredients) {
-			decimal amount;
-			// If ingredient is in Shaker
-			if (Mix.TryGetValue (item.Key, out amount)) {
-				Match = true;
-				// Rate up if amount is exact
-				if (amount == item.Value)
-					Rate++;
-			} else {
-				Match = false;
-				break;
-			}
-		}
-		return Rate;
-	}
 
 	/*
 	 * CalculateTip: The tip depends on
@@ -147,21 +124,18 @@ public class Request : MonoBehaviour {
 	 * 
 	 * Know your Clients! Know how to mix good and fast!
 	 */
-	public int CalculateTip(float generousness) {
-		Tip = 0;
-		int complexity = RequestedDrink.Ingredients.Count;
-		// Is the Client willing to give a tip?
-		float kRandom = Random.Range (0.0f, 1.0f) * generousness;
-		// How much time has passed?
-		float duration = Time.time - OrderTime;
-		// Maximum time allowed depends on number of ingredients
-		float maxTime = 10f + Mathf.Pow ((float)complexity, 2.0f);
+	public bool CalculateTip() {
+		Tip = 0.0m;
+		float kRandom = Random.Range (0.0f, 1.0f);
 
-		if (true || (kRandom > 0.5f) && (duration < maxTime)) {
-			Tip = (int)Mathf.Round ((float)RequestedDrink.Price * Rate * 0.3f);
-		}
+		if (kRandom < 0.5f)
+			return false;
 
-		Debug.Log ("Tip: " + Tip);
-		return Tip;
+		Tip = (decimal)System.Math.Round((double)RequestedDrink.Price * 0.1 * Rate);
+
+		if (Tip > 0)
+			return true;
+		else
+			return false;
 	}
 }

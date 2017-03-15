@@ -10,8 +10,11 @@ public class Client : MonoBehaviour {
 	private Request request;
 	private TextMesh chat;
 
-	private float stayTime = 10f;
+	private decimal hasDrunk = 0m;
 	private float orderTakeGap = 60f;	// TODO adjust
+
+	private bool orderToLong = false;
+	private bool toDrunk = false;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +29,15 @@ public class Client : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!request.Match && (Time.time > (request.OrderTime + orderTakeGap)))
+
+		orderToLong = (
+		    !request.Match &&
+		    (Time.time > (request.OrderTime + orderTakeGap))
+		);
+
+		toDrunk = false;
+
+		if (orderToLong || toDrunk)
 			Leave ();
 	}
 
@@ -58,9 +69,18 @@ public class Client : MonoBehaviour {
 
 	private float TakeDrink() {
 		float delay = (float)request.ReceivedDrink.Volume * 0.02f;
+		hasDrunk += request.ReceivedDrink.Volume;
 		Debug.Log ("TakeDrink");
 		Chat (character.Say (request.FeedBack), true);
+
+		if (request.State == 5)
+			hasDrunk -= 0.5m * request.ReceivedDrink.Volume;
+
+		if (request.CalculateTip ())
+			Chat (character.Say("tip"), true);
+
 		GiveMoney ();
+		IsToDrunken ();
 		OrderDrink (delay);
 		return 10f;
 	}
@@ -72,7 +92,7 @@ public class Client : MonoBehaviour {
 	}
 
 	private void GiveMoney() {
-		GameMaster.MakeCash (request.RequestedDrink.Price);
+		GameMaster.MakeCash (request.RequestedDrink.Price + request.Tip);
 	}
 
 	private void Leave() {
@@ -84,5 +104,10 @@ public class Client : MonoBehaviour {
 //		GameMaster.MenuExit ();
 
 		transform.gameObject.SetActive (false);
+	}
+
+	private bool IsToDrunken() {
+		toDrunk = hasDrunk > character.Capacity;
+		return toDrunk;
 	}
 }

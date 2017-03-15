@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour {
 
 	public string Name;
-	public float Durability;			// Factor to apply on promille level
+	public decimal Capacity;			// Factor to apply on promille level
 	public float[] Generousness;		// Factor to apply on tip
 	public string[] FavoriteDrinks;		// Only these kind of Drinks the client always orders
 	public string[] DrinkSelection;		// Just specify if there are limitations like non-alcoholics
@@ -23,7 +23,8 @@ public class Character : MonoBehaviour {
 				{"empty_drink_container", new string[] {"Warum denn so geizig?"}},
 				{"no_drink_match", new string[] {"Ich weiß ja nicht was das sein soll, aber das ist sicher nicht was ich bestellt habe."}},
 				{"drink_okay", new string[] {"Danke."}},
-				{"great_drink", new string[] {"Wow! Wo hast du gelernt solch fette Drinks zu mischen?"}}
+				{"great_drink", new string[] {"Wow! Wo hast du gelernt solch fette Drinks zu mischen?"}},
+				{"tip", new string[] {"Stimmt so."}}
 			}
 		},
 		// Alcoholic
@@ -39,7 +40,8 @@ public class Character : MonoBehaviour {
 				{"empty_drink_container", new string[] {"Warum denn so geizig?"}},
 				{"no_drink_match", new string[] {"Ich weiß ja nicht was das sein soll, aber das ist sicher nicht was ich bestellt habe."}},
 				{"drink_okay", new string[] {"Danke."}},
-				{"great_drink", new string[] {"Wow! Wo hast du gelernt solch fette Drinks zu mischen?"}}
+				{"great_drink", new string[] {"Wow! Wo hast du gelernt solch fette Drinks zu mischen?"}},
+				{"tip", new string[] {"Stimmt so."}}
 			}
 		},
 		{
@@ -54,7 +56,8 @@ public class Character : MonoBehaviour {
 				{"empty_drink_container", new string[] {"Warum denn so geizig?"}},
 				{"no_drink_match", new string[] {"Ich weiß ja nicht was das sein soll, aber das ist sicher nicht was ich bestellt habe."}},
 				{"drink_okay", new string[] {"Danke."}},
-				{"great_drink", new string[] {"Wow! Wo hast du gelernt solch fette Drinks zu mischen?"}}
+				{"great_drink", new string[] {"Wow! Wo hast du gelernt solch fette Drinks zu mischen?"}},
+				{"tip", new string[] {"Den Rest kannst du behalten."}}
 			}
 		}
 	};
@@ -73,23 +76,24 @@ public class Character : MonoBehaviour {
 		return messageOptions [Random.Range (0, messageOptions.Length)];
 	}
 
+	// TODO: flow
 	private void SetProperties() {
 		switch(Name) {
 		// Does not drink alcohol at all, is a bit Hipster
 		case "Bastian":
-			Durability = 1.0f;
+			Capacity = 550m;
 			Generousness = new float[] { 0.0f, 0.1f, 0.2f };
 			FavoriteDrinks = new string[] { "Cola" };
 			Talk = TalkList [Name];
 			break;
 		case "Klaus":
-			Durability = 3.5f;
+			Capacity = 5000m;
 			Generousness = new float[] { 0.8f, 0.85f, 1.0f };
 			FavoriteDrinks = new string[] { "Beer" };
 			Talk = TalkList [Name];
 			break;
 		case "Egon":
-			Durability = 3.5f;
+			Capacity = 10000m;
 			Generousness = new float[] { 0.8f, 0.85f, 1.0f };
 			FavoriteDrinks = new string[] { "Beer" };
 			Talk = TalkList [Name];
