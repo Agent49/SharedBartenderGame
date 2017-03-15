@@ -28,8 +28,7 @@ public static class Stock {
 		{"GlassSoftdrink", 300.0m },
 		{"GlassWine", 250.0m },
 		{"GlassSparklingWine", 200.0m },
-		{"GlassDoubleShot", 40.0m },
-		{"GlassDouble", 20.0m }
+		{"GlassShot", 40.0m }
 	};
 
 	private static string[] stockIngredientsKeys = stockIngredients.Keys.ToArray ();
