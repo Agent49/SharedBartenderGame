@@ -8,8 +8,11 @@ public class IngredientContainer : Container {
 	private float initialTime;
 	private decimal sip = 10.0m;
 
+	private MeshRenderer closedBottle;
+
 	// Use this for initialization
 	void Start () {
+		interactibleItem = transform.GetComponent<NewtonVR.NVRInteractableItem> ();
 		Initialize ();
 	}
 	
@@ -21,6 +24,9 @@ public class IngredientContainer : Container {
 			initialTime = 0.0f;
 			Particles.Stop ();
 		}
+
+		if ((interactibleItem.IsAttached))
+			closedBottle.enabled = false;
 	}
 
 	protected override void Initialize() {
@@ -41,9 +47,15 @@ public class IngredientContainer : Container {
 
 		// Initialize Particle System
 		InitializeParticleSystem();
+
+		// Initialize closed Mesh
+		closedBottle = gameObject.transform.GetChild (1).GetComponent<MeshRenderer>();
+		if(closedBottle != null)
+			closedBottle.enabled = true;
 	}
 
 	public void FlowOut() {
+		Debug.Log (particleSource);
 		if (Physics.Raycast(particleSource.transform.position, Vector3.down, out hit, range)) {
 			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
 

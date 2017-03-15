@@ -17,6 +17,8 @@ public abstract class Container : MonoBehaviour {
 
 	protected Vector3 spawnPosition;
 
+	protected NewtonVR.NVRInteractableItem interactibleItem;
+
 	public ParticleSystem Particles;
 
 	protected void InitializeParticleSystem() {
