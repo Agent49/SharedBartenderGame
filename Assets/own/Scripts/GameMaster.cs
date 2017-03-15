@@ -28,6 +28,9 @@ public class GameMaster : MonoBehaviour {
 	public static bool GameStop{ get; set; }
 	public static int NumOfClients { get; set; }
 
+	public static NewtonVR.NVRHand LeftNVRControls;
+	public static NewtonVR.NVRHand RightNVRControls;
+
 	public static SaveData saveData = new SaveData ();
 
 	public static Text DebugText;
@@ -36,6 +39,9 @@ public class GameMaster : MonoBehaviour {
 		GameSession = true;
 		NumOfClients = 0;
 		StartTime = Time.time;
+
+		LeftNVRControls = GameObject.Find ("LeftHand").GetComponent<NewtonVR.NVRHand>();
+		RightNVRControls = GameObject.Find ("RightHand").GetComponent<NewtonVR.NVRHand>();
 	}
 
 	void Start() {
@@ -137,5 +143,9 @@ public class GameMaster : MonoBehaviour {
 
 	public static void EnterToilet() {
 		
+	}
+
+	public static void CheckButton() {
+		Debug.Log("Button pressed!");
 	}
 }

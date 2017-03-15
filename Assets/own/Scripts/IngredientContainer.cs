@@ -12,7 +12,7 @@ public class IngredientContainer : Container {
 
 	// Use this for initialization
 	void Start () {
-		interactibleItem = transform.GetComponent<NewtonVR.NVRInteractableItem> ();
+		interactibleItem = transform.GetComponent<NewtonVR.NVRInteractableItem> ();		
 		Initialize ();
 	}
 	
@@ -27,6 +27,9 @@ public class IngredientContainer : Container {
 
 		if ((interactibleItem.IsAttached))
 			closedBottle.enabled = false;
+
+		if(GameMaster.RightNVRControls.Inputs [NewtonVR.NVRButtons.Trigger].IsPressed)
+			Debug.Log("RightNVRControls is pressed");
 	}
 
 	protected override void Initialize() {
@@ -55,7 +58,12 @@ public class IngredientContainer : Container {
 	}
 
 	public void FlowOut() {
-		Debug.Log (particleSource);
+		bool isFillUp = (
+			Input.GetMouseButton (2) ||
+			(GameMaster.RightNVRControls.Inputs [NewtonVR.NVRButtons.Trigger].IsPressed) ||
+			(GameMaster.LeftNVRControls.Inputs [NewtonVR.NVRButtons.Trigger].IsPressed)
+		) && ((Time.time - initialTime) >= (timeStep));
+
 		if (Physics.Raycast(particleSource.transform.position, Vector3.down, out hit, range)) {
 			DrinkContainer drinkContainer = hit.collider.gameObject.GetComponent<DrinkContainer> ();
 
@@ -65,7 +73,7 @@ public class IngredientContainer : Container {
 				if (initialTime == 0)
 					initialTime = Time.time;
 
-				if (Input.GetMouseButton (2) && ((Time.time - initialTime) >= (timeStep))) {
+				if (isFillUp) {
 					initialTime = Time.time;
 					drinkContainer.fillUp (Name);
 				} else if((Time.time - initialTime) >= timeStep) {
