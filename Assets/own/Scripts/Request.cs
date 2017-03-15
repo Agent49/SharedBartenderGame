@@ -33,7 +33,6 @@ public class Request : MonoBehaviour {
 
 	public bool Receive(Collider other) {
 		DrinkContainer drinkContainer = other.GetComponent<DrinkContainer> ();
-
 		if (drinkContainer == null) {
 			// Object not of type DrinkContainer
 			State = 1;

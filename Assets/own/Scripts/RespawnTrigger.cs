@@ -13,7 +13,7 @@ public class RespawnTrigger : MonoBehaviour {
 
 		float spawnTime;
 
-		if (gameObject.name.Equals ("Tray")) {
+		if (gameObject.name.Equals ("Tray") && (other.GetComponent<DrinkContainer> () != null)) {
 			spawnTime = transform.parent.gameObject.GetComponent<Client> ().GetDrink (other);
 			isTrigger = false;
 			StartCoroutine (DelayedEnableTrigger (spawnTime));

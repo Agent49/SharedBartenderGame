@@ -35,8 +35,6 @@ public class Client : MonoBehaviour {
 		    (Time.time > (request.OrderTime + orderTakeGap))
 		);
 
-		toDrunk = false;
-
 		if (orderToLong || toDrunk)
 			Leave ();
 	}
@@ -81,6 +79,8 @@ public class Client : MonoBehaviour {
 
 		GiveMoney ();
 		IsToDrunken ();
+		Debug.Log (hasDrunk);
+		Debug.Log (character.Capacity);
 		OrderDrink (delay);
 		return 10f;
 	}
