@@ -11,7 +11,7 @@ public class Client : MonoBehaviour {
 	private TextMesh chat;
 
 	private float stayTime = 10f;
-	private float orderTakeGap = 10f;	// TODO adjust
+	private float orderTakeGap = 60f;	// TODO adjust
 
 	// Use this for initialization
 	void Start () {
@@ -81,7 +81,7 @@ public class Client : MonoBehaviour {
 		if (GameMaster.NumOfClients <= 0)
 			GameMaster.GameSession = false;
 
-		GameMaster.MenuExit ();
+//		GameMaster.MenuExit ();
 
 		transform.gameObject.SetActive (false);
 	}
