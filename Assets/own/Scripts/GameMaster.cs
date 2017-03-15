@@ -8,6 +8,7 @@ using System.Linq;
 
 public class GameMaster : MonoBehaviour {
 
+	public static Transform ExitMenuUi;
 	public static Transform SaveMenuUi;
 	public static Transform HighscoreMenuUi;
 	public static Transform HighScoreTable;
@@ -22,6 +23,9 @@ public class GameMaster : MonoBehaviour {
 	public static TextMesh TillText;
 	public static decimal Cash = 0.00m;
 
+	private bool GameSession { get; set; }
+	private bool GameStop { get; set; }
+
 	public static SaveData saveData = new SaveData ();
 
 	public static Text DebugText;
@@ -32,6 +36,7 @@ public class GameMaster : MonoBehaviour {
 		DebugText = GameObject.Find ("DebugOutText").transform.GetComponent<Text> ();
 		TillText = GameObject.Find ("TillText").transform.GetComponent<TextMesh>();
 
+		ExitMenuUi = GameObject.Find ("ExitMenu").transform;
 		SaveMenuUi = GameObject.Find ("SaveMenu").transform;
 		HighscoreMenuUi = GameObject.Find ("HighscoreMenu").transform;
 		HighScoreTable = GameObject.Find ("TableBody").transform;
@@ -43,6 +48,7 @@ public class GameMaster : MonoBehaviour {
 
 		NameInput = GameObject.Find("NameInput").GetComponent<InputField> ();
 
+		ExitMenuUi.gameObject.SetActive (false);
 		SaveMenuUi.gameObject.SetActive (false);
 		HighscoreMenuUi.gameObject.SetActive (false);
 
@@ -72,6 +78,14 @@ public class GameMaster : MonoBehaviour {
 		NameInput.ActivateInputField ();
 	}
 
+	public static void MenuExit() {
+		ExitMenuUi.gameObject.SetActive (true);
+	}
+
+	public static void MenuHighscore() {
+		HighscoreMenuUi.gameObject.SetActive (true);
+	}
+
 	public static void LoadScore() {
 		string json = PlayerPrefs.GetString ("highscores");
 		saveData = JsonConvert.DeserializeObject<SaveData> (json);
@@ -93,10 +107,6 @@ public class GameMaster : MonoBehaviour {
 		MenuHighscore ();
 	}
 
-	public static void MenuHighscore() {
-		SaveMenuUi.gameObject.SetActive (false);
-		HighscoreMenuUi.gameObject.SetActive (true);
-	}
 
 	public static bool CreateHighscoreTable() {
 		if (saveData.Highscores.Count <= 0)
@@ -105,9 +115,6 @@ public class GameMaster : MonoBehaviour {
 		List<Highscore> sortedHighscores = saveData.Highscores.OrderByDescending (o => o.Money).ToList();
 
 		for(var i = 0; i < sortedHighscores.Count; i++) {
-			
-			Debug.Log (sortedHighscores [i].Name + "|" + sortedHighscores [i].Money + "|" + sortedHighscores [i].Date + "|");
-
 			HsNumber.text += (i + 1).ToString() + "\n";
 			HsName.text += sortedHighscores [i].Name + "\n";
 			HsDate.text += sortedHighscores [i].Date + "\n";
