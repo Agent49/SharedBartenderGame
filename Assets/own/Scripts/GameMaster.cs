@@ -24,8 +24,8 @@ public class GameMaster : MonoBehaviour {
 	public static decimal Cash = 0.00m;
 
 	public static float StartTime;
-	private static bool gameSession { get; set; }
-	private static bool gameStop{ get; set; }
+	public static bool GameSession { get; set; }
+	public static bool GameStop{ get; set; }
 	public static int NumOfClients { get; set; }
 
 	public static SaveData saveData = new SaveData ();
@@ -33,6 +33,7 @@ public class GameMaster : MonoBehaviour {
 	public static Text DebugText;
 
 	void Awake() {
+		GameSession = true;
 		NumOfClients = 0;
 		StartTime = Time.time;
 	}
@@ -87,6 +88,9 @@ public class GameMaster : MonoBehaviour {
 
 	public static void MenuExit() {
 		ExitMenuUi.gameObject.SetActive (true);
+
+		if (!GameSession)
+			GameObject.Find("ContinueButton").SetActive (false);
 	}
 
 	public static void MenuHighscore() {

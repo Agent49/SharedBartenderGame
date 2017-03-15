@@ -9,7 +9,9 @@ public class Client : MonoBehaviour {
 	private Character character;
 	private Request request;
 	private TextMesh chat;
+
 	private float stayTime = 10f;
+	private float orderTakeGap = 10f;	// TODO adjust
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,8 @@ public class Client : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		if (!request.Match && (Time.time > (request.OrderTime + orderTakeGap)))
+			Leave ();
 	}
 
 	private void Chat(string message, bool append = false) {
@@ -34,12 +37,12 @@ public class Client : MonoBehaviour {
 			chat.text = message;
 	}
 
-	public void OrderDrink(float orderTime = 0.0f) {
-		StartCoroutine (DelayedOrderDrink (orderTime));
+	public void OrderDrink(float orderDelay = 0.0f) {
+		StartCoroutine (DelayedOrderDrink (orderDelay));
 	}
 
-	IEnumerator DelayedOrderDrink(float orderTime) {
-		yield return new WaitForSeconds(orderTime);
+	IEnumerator DelayedOrderDrink(float orderDelay) {
+		yield return new WaitForSeconds(orderDelay);
 		request = new Request ();
 		Chat (character.Say ("order") + request.RequestedDrink.Name);
 		Debug.Log (request.RequestedDrink.ToString());		
@@ -73,7 +76,13 @@ public class Client : MonoBehaviour {
 	}
 
 	private void Leave() {
-		if ((GameMaster.StartTime + stayTime) > Time.time)
-			Debug.Log ("Leave");
+		GameMaster.NumOfClients--;
+
+		if (GameMaster.NumOfClients <= 0)
+			GameMaster.GameSession = false;
+
+		GameMaster.MenuExit ();
+
+		transform.gameObject.SetActive (false);
 	}
 }

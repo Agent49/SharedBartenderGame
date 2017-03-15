@@ -8,7 +8,7 @@ public class Request : MonoBehaviour {
 	public Drink ReceivedDrink;
 	public bool Match;
 	public int Rate;
-	public float InitialTime;
+	public float OrderTime;
 	public int Tip;
 	public string FeedBack;
 
@@ -23,9 +23,11 @@ public class Request : MonoBehaviour {
 		// 2.) Choose one drink randomly
 		RequestedDrink = new Drink(drinkList[Random.Range(0, drinkList.Length)]);
 		// 3.) Time to evaluate duration
-		InitialTime = Time.time;
+		OrderTime = Time.time;
 		// 4.) Set first requestState "0" which is: not yet processed
 		requestState = 0;
+
+		Match = false;
 	}
 
 	public bool Receive(Collider other) {
@@ -85,6 +87,7 @@ public class Request : MonoBehaviour {
 
 		// Approach: The Drink is takeable
 		requestState = 4;
+		Match = true;
 		FeedBack = "drink_okay";
 			
 		// 3) Iterate over RequestedDrink Sugar
@@ -150,7 +153,7 @@ public class Request : MonoBehaviour {
 		// Is the Client willing to give a tip?
 		float kRandom = Random.Range (0.0f, 1.0f) * generousness;
 		// How much time has passed?
-		float duration = Time.time - InitialTime;
+		float duration = Time.time - OrderTime;
 		// Maximum time allowed depends on number of ingredients
 		float maxTime = 10f + Mathf.Pow ((float)complexity, 2.0f);
 
