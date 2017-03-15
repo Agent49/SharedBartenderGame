@@ -1,7 +1,7 @@
 ## README ##
 
 ## Members ##
-- Kai Jurgeit @Agent49
+- Kai Jurgeit @Agent49 (Win7, Win8, Win10)
 - Tobias Krueger @fre2dyy
 - Martin Heise @Khamu
 
