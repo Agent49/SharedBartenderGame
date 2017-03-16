@@ -33,6 +33,12 @@ public class GameMaster : MonoBehaviour {
 
 	public static SaveData saveData = new SaveData ();
 
+	public static AudioSource AudioSip;
+
+	private static bool IsSaveMenu = false;
+	private static bool IsHighscoreMenu = false;
+	private static bool IsExitMenu = false;
+
 	public static Text DebugText;
 
 	void Awake() {
@@ -42,6 +48,7 @@ public class GameMaster : MonoBehaviour {
 
 		LeftNVRControls = GameObject.Find ("LeftHand").GetComponent<NewtonVR.NVRHand>();
 		RightNVRControls = GameObject.Find ("RightHand").GetComponent<NewtonVR.NVRHand>();
+		AudioSip = GameObject.Find ("AudioSip").GetComponent<AudioSource>();
 	}
 
 	void Start() {
@@ -75,6 +82,26 @@ public class GameMaster : MonoBehaviour {
 
 		if (SaveMenuUi.gameObject.activeSelf && Input.GetKeyDown (KeyCode.Return))
 			SaveScore ();
+
+		if(IsSaveMenu) {
+			if(Input.GetKeyDown(KeyCode.Escape)) {
+				SaveMenuUi.gameObject.SetActive (false);
+				MenuHighscore ();
+			}
+		}
+
+		if(IsHighscoreMenu) {
+			if(Input.GetKeyDown(KeyCode.Escape)) {
+				HighscoreMenuUi.gameObject.SetActive (false);
+				MenuExit ();
+			}			
+		}
+
+		if(IsExitMenu) {
+			if(Input.GetKeyDown(KeyCode.Escape)) {
+				MenuExit ();
+			}			
+		}
 	}
 
 	public static void DebugOut(string debugText) {
@@ -87,12 +114,14 @@ public class GameMaster : MonoBehaviour {
 	}
 		
 	public static void MenuSave() {
+		IsSaveMenu = true;
 		SaveMenuUi.gameObject.SetActive (true);
 		NameInput.Select ();
 		NameInput.ActivateInputField ();
 	}
 
 	public static void MenuExit() {
+		IsExitMenu= true;
 		ExitMenuUi.gameObject.SetActive (true);
 
 		if (!GameSession)
@@ -100,7 +129,12 @@ public class GameMaster : MonoBehaviour {
 	}
 
 	public static void MenuHighscore() {
+		IsHighscoreMenu = true;
 		HighscoreMenuUi.gameObject.SetActive (true);
+	}
+
+	public static void EndGame() {
+		MenuSave ();
 	}
 
 	public static void LoadScore() {
@@ -141,11 +175,4 @@ public class GameMaster : MonoBehaviour {
 		return true;
 	}
 
-	public static void EnterToilet() {
-		
-	}
-
-	public static void CheckButton() {
-		Debug.Log("Button pressed!");
-	}
 }

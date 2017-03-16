@@ -12,7 +12,7 @@ public class IngredientContainer : Container {
 
 	// Use this for initialization
 	void Start () {
-		interactibleItem = transform.GetComponent<NewtonVR.NVRInteractableItem> ();		
+		interactibleItem = transform.GetComponent<NewtonVR.NVRInteractableItem> ();
 		Initialize ();
 	}
 	
@@ -77,6 +77,7 @@ public class IngredientContainer : Container {
 					initialTime = Time.time;
 					Volume -= drinkContainer.fillUp (Name);
 				} else if((Time.time - initialTime) >= timeStep) {
+					GameMaster.AudioSip.Play ();
 					initialTime = Time.time;
 					Volume -= drinkContainer.fillIn (Name, sip);
 				}

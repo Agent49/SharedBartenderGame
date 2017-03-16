@@ -92,16 +92,17 @@ public class Client : MonoBehaviour {
 	}
 
 	private void GiveMoney() {
+		Debug.Log ("Tip: " + request.Tip);
 		GameMaster.MakeCash (request.RequestedDrink.Price + request.Tip);
 	}
 
 	private void Leave() {
 		GameMaster.NumOfClients--;
 
-		if (GameMaster.NumOfClients <= 0)
+		if (GameMaster.NumOfClients <= 0) {
 			GameMaster.GameSession = false;
-
-//		GameMaster.MenuExit ();
+			GameMaster.EndGame ();
+		}
 
 		transform.gameObject.SetActive (false);
 	}
