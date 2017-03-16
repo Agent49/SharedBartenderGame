@@ -33,18 +33,18 @@ public class Drink : MonoBehaviour {
 		{"Orangensaft", new Dictionary<string, decimal> {{"Ojuice", 300.0m}}},
 		{"Rotwein", new Dictionary<string, decimal> {{"RedWine", 250.0m}}},
 		{"Weisswein", new Dictionary<string, decimal> {{"WhiteWine", 250.0m}}},
-		{"Sekt", new Dictionary<string, decimal> {{"SparklingWine", 200.0m}}},
+//		{"Sekt", new Dictionary<string, decimal> {{"SparklingWine", 200.0m}}},
 		{"Diesel", new Dictionary<string, decimal> {{"Beer", 250.0m}, {"Cola", 250.0m}}},
-//		{"Cuba Libre", new Dictionary<string, decimal> {{"Rum", 60.0m},{"Cola", 290.0m}}},
-//		{"Gin Tonic", new Dictionary<string, decimal> {{"Gin", 60.0m}, {"Tonic", 290.0m}}},
-//		{"Tequila Sunrise", new Dictionary<string, decimal> {{"Tequila", 60.0m}, {"Cjuice", 10.0m},{"Grenadine", 10.0m},{"Ojuice", 270.0m}}},
-//		{"Tequila Sour", new Dictionary<string, decimal> {{"Tequila", 60.0m}, {"Cjuice", 50.0m},{"Sirup", 10.0m},{"Water", 280.0m}}},
-//		{"White Lady", new Dictionary<string, decimal> {{"Gin", 60.0m}, {"SparklingWine", 340.0m}}},
-//		{"Gin and Sin", new Dictionary<string, decimal> {{"Tequila", 80.0m}, {"Grenadine", 20.0m},{"Cjuice", 60.0m},{"Ojuice", 240.0m}}},
-//		{"Daiquiri", new Dictionary<string, decimal> {{"Rum", 80.0m}, {"Sugar", 60.0m},{"Ljuice", 260.0m}}},
-//		{"Mojito", new Dictionary<string, decimal> {{"Rum", 60.0m}, {"Sugar", 40.0m},{"Ljuice", 400.0m},{"Water", 160.0m}}},
-//		{"Gin Fizz", new Dictionary<string, decimal> {{"Gin", 50.0m}, {"Cjuice", 30.0m}, {"Sirup", 20.0m}, {"Water", 100.0m}}},
-//		{"Whisky Sour", new Dictionary<string, decimal> {{"Whisky", 50.0m}, {"Cjuice", 30.0m}, {"Sirup", 20.0m}, {"Water", 100.0m}}}
+		{"Cuba Libre", new Dictionary<string, decimal> {{"Rum", 60.0m},{"Cola", 290.0m}}},
+		{"Gin Tonic", new Dictionary<string, decimal> {{"Gin", 60.0m}, {"Tonic", 290.0m}}},
+		{"Tequila Sunrise", new Dictionary<string, decimal> {{"Tequila", 60.0m}, {"Cjuice", 10.0m},{"Grenadine", 10.0m},{"Ojuice", 270.0m}}},
+		{"Tequila Sour", new Dictionary<string, decimal> {{"Tequila", 60.0m}, {"Cjuice", 50.0m},{"Sirup", 10.0m},{"Water", 280.0m}}},
+		{"White Lady", new Dictionary<string, decimal> {{"Gin", 60.0m}, {"SparklingWine", 340.0m}}},
+		{"Gin and Sin", new Dictionary<string, decimal> {{"Gin", 80.0m}, {"Grenadine", 20.0m},{"Cjuice", 60.0m},{"Ojuice", 240.0m}}},
+		{"Daiquiri", new Dictionary<string, decimal> {{"Rum", 80.0m}, {"Sugar", 60.0m},{"Ljuice", 260.0m}}},
+		{"Mojito", new Dictionary<string, decimal> {{"Rum", 60.0m}, {"Sugar", 40.0m},{"Ljuice", 40.0m},{"Water", 260.0m}}},
+		{"Gin Fizz", new Dictionary<string, decimal> {{"Gin", 50.0m}, {"Cjuice", 30.0m}, {"Sirup", 20.0m}, {"Water", 100.0m}}},
+		{"Whisky Sour", new Dictionary<string, decimal> {{"Whisky", 50.0m}, {"Cjuice", 30.0m}, {"Sirup", 20.0m}, {"Water", 100.0m}}}
 	};
 
 	// How much % alcohol does an ingredient contain?

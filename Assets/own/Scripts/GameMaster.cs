@@ -34,6 +34,7 @@ public class GameMaster : MonoBehaviour {
 	public static SaveData saveData = new SaveData ();
 
 	public static AudioSource AudioSip;
+	public static AudioSource AudioFillUp;
 
 	private static bool IsSaveMenu = false;
 	private static bool IsHighscoreMenu = false;
@@ -49,6 +50,7 @@ public class GameMaster : MonoBehaviour {
 		LeftNVRControls = GameObject.Find ("LeftHand").GetComponent<NewtonVR.NVRHand>();
 		RightNVRControls = GameObject.Find ("RightHand").GetComponent<NewtonVR.NVRHand>();
 		AudioSip = GameObject.Find ("AudioSip").GetComponent<AudioSource>();
+		AudioFillUp = GameObject.Find ("AudioFillUp").GetComponent<AudioSource>();
 	}
 
 	void Start() {

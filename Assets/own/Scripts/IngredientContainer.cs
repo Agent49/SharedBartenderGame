@@ -75,6 +75,7 @@ public class IngredientContainer : Container {
 
 				if (isFillUp) {
 					initialTime = Time.time;
+					GameMaster.AudioFillUp.Play ();
 					Volume -= drinkContainer.fillUp (Name);
 				} else if((Time.time - initialTime) >= timeStep) {
 					GameMaster.AudioSip.Play ();

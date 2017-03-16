@@ -9,15 +9,20 @@ public static class Stock {
 	private static Dictionary<string, Ingredient> stockIngredients = new Dictionary<string, Ingredient> () {
 		{ "Beer", new Ingredient(500.0m, 0.6m, new Color(.99f, .89f, .22f, .75f)) },
 		{ "Cola", new Ingredient(1000.0m, 1.0m, new Color(0.56f, 0.11f, 0.11f, 0.75f)) },
+		{ "Water", new Ingredient(1000.0m, 1.0m, new Color(0.8f, 0.8f, 0.8f, 0.75f)) },
 		{ "Rum", new Ingredient(700.0m, 12.0m, new Color(0.47f, 0.25f, 0.15f, 0.75f)) },
 		{ "Whisky", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
+		{ "Tonic", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
 		{ "Gin", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
 		{ "Wodka", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
 		{ "RedWine", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
-		{ "WhiteWine", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
-		{ "SparklingWine", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
+		{ "WhiteWine", new Ingredient(700.0m, 12.0m, new Color(0.8f, 0.8f, 0.8f, 1.0f)) },
+		{ "SparklingWine", new Ingredient(700.0m, 12.0m, new Color(0.8f, 0.8f, 0.8f, 1.0f)) },
 		{ "Ojuice", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
-		{ "Grenadine", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
+		{ "Sirup", new Ingredient(500.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
+		{ "Ljuice", new Ingredient(250.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
+		{ "Cjuice", new Ingredient(250.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
+		{ "Grenadine", new Ingredient(500.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) },
 		{ "Tequila", new Ingredient(700.0m, 12.0m, new Color(1.0f, 0.0f, 0.0f, 1.0f)) }
 	};
 
